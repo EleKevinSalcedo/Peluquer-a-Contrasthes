@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peluquería Contrasts - Tu Estilo, Nuestra Pasión</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- Navegación -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <h1>✂️ Contrasts</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#galeria">Galería</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h2>Bienvenido a Peluquería Contrasts</h2>
+            <p>Transforma tu imagen, celebra tu estilo</p>
+            <a href="#servicios" class="btn btn-primary">Descubre Nuestros Servicios</a>
+        </div>
+    </section>
+
+    <!-- Servicios -->
+    <section id="servicios" class="servicios">
+        <div class="container">
+            <h2>Nuestros Servicios</h2>
+            <div class="servicios-grid">
+                <div class="servicio-card">
+                    <div class="servicio-icon">💇</div>
+                    <h3>Cortes de Cabello</h3>
+                    <p>Estilos modernos y clásicos adaptados a tu tipo de cabello y personalidad.</p>
+                </div>
+                <div class="servicio-card">
+                    <div class="servicio-icon">🎨</div>
+                    <h3>Tinte y Coloración</h3>
+                    <p>Cambios de color profesionales con productos de calidad premium.</p>
+                </div>
+                <div class="servicio-card">
+                    <div class="servicio-icon">💆</div>
+                    <h3>Tratamientos</h3>
+                    <p>Hidratación, nutrición y cuidado especializado para tu cabello.</p>
+                </div>
+                <div class="servicio-card">
+                    <div class="servicio-icon">💅</div>
+                    <h3>Alisados y Permanentes</h3>
+                    <p>Servicios de alisado y ondulación permanente con técnicas avanzadas.</p>
+                </div>
+                <div class="servicio-card">
+                    <div class="servicio-icon">💄</div>
+                    <h3>Maquillaje</h3>
+                    <p>Maquillaje profesional para eventos especiales y ocasiones.</p>
+                </div>
+                <div class="servicio-card">
+                    <div class="servicio-icon">✨</div>
+                    <h3>Paquetes VIP</h3>
+                    <p>Experiencias completas de transformación y relajación.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galería -->
+    <section id="galeria" class="galeria">
+        <div class="container">
+            <h2>Galería de Trabajos</h2>
+            <div class="galeria-grid">
+                <div class="galeria-item">
+                    <img src="pictures/trabajo1.jpg" alt="Corte de cabello moderno">
+                    <p>Corte Degradado</p>
+                </div>
+                <div class="galeria-item">
+                    <img src="pictures/trabajo2.jpg" alt="Coloración profesional">
+                    <p>Balayage Castaño</p>
+                </div>
+                <div class="galeria-item">
+                    <img src="pictures/trabajo3.jpg" alt="Diseño de peinado">
+                    <p>Ondas Perfectas</p>
+                </div>
+                <div class="galeria-item">
+                    <img src="pictures/trabajo4.jpg" alt="Transformación completa">
+                    <p>Transformación Total</p>
+                </div>
+                <div class="galeria-item">
+                    <img src="pictures/trabajo5.jpg" alt="Mechas rubias">
+                    <p>Mechas Californianas</p>
+                </div>
+                <div class="galeria-item">
+                    <img src="pictures/trabajo6.jpg" alt="Peinado nupcial">
+                    <p>Peinado Especial</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto" class="contacto">
+        <div class="container">
+            <h2>Reserva Tu Cita</h2>
+            <div class="contacto-content">
+                <div class="info-contacto">
+                    <h3>Información de Contacto</h3>
+                    <div class="contacto-item">
+                        <strong>📍 Ubicación:</strong>
+                        <p>Calle Principal 123, Tu Ciudad</p>
+                    </div>
+                    <div class="contacto-item">
+                        <strong>📞 Teléfono:</strong>
+                        <p>+34 612 345 678</p>
+                    </div>
+                    <div class="contacto-item">
+                        <strong>📧 Email:</strong>
+                        <p>info@peluqueriacontrasts.com</p>
+                    </div>
+                    <div class="contacto-item">
+                        <strong>🕐 Horario:</strong>
+                        <p>Lunes - Viernes: 9:00 AM - 7:00 PM<br>Sábados: 9:00 AM - 3:00 PM<br>Domingos: Cerrado</p>
+                    </div>
+                </div>
+                <form class="formulario">
+                    <input type="text" placeholder="Tu Nombre" required>
+                    <input type="email" placeholder="Tu Email" required>
+                    <input type="tel" placeholder="Tu Teléfono">
+                    <select required>
+                        <option value="">Selecciona un Servicio</option>
+                        <option value="corte">Corte de Cabello</option>
+                        <option value="tinte">Tinte y Coloración</option>
+                        <option value="tratamiento">Tratamientos</option>
+                        <option value="alisado">Alisados y Permanentes</option>
+                        <option value="maquillaje">Maquillaje</option>
+                        <option value="paquete">Paquete VIP</option>
+                    </select>
+                    <textarea placeholder="Mensaje (opcional)" rows="4"></textarea>
+                    <button type="submit" class="btn btn-primary">Enviar Reserva</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Peluquería Contrasts. Todos los derechos reservados.</p>
+            <div class="social-links">
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="#">WhatsApp</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
