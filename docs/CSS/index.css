@@ -1,4 +1,4 @@
-/* ===================== 1. RESET Y VARIABLES ===================== */
+/* ===================== 1. VARIABLES Y RESET ===================== */
 * {
     margin: 0;
     padding: 0;
@@ -6,19 +6,18 @@
 }
 
 :root {
-    --primary-color: #2c3e50;    /* Azul oscuro */
-    --secondary-color: #e74c3c;  /* Rojo Clue */
-    --accent-color: #f39c12;     /* Naranja */
-    --bg-clue: #ffffff;
-    --border-clue: #eee;
+    --primary-color: #2c3e50;
+    --secondary-color: #e74c3c;
+    --accent-color: #f39c12;
+    --light-bg: #f8f9fa;
+    --text-color: #2c3e50;
     --border-radius: 12px;
 }
 
 body {
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
-    color: var(--primary-color);
-    background-color: var(--bg-clue);
+    color: var(--text-color);
 }
 
 .container {
@@ -27,7 +26,7 @@ body {
     padding: 0 20px;
 }
 
-/* ===================== 2. NAVBAR Y NAVEGACIÓN ===================== */
+/* ===================== 2. NAVEGACIÓN (COMÚN) ===================== */
 .navbar {
     background-color: var(--primary-color);
     color: white;
@@ -36,6 +35,12 @@ body {
     top: 0;
     width: 100%;
     z-index: 1000;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.navbar.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
 }
 
 .navbar .container {
@@ -56,154 +61,140 @@ body {
     font-weight: 500;
 }
 
-/* ===================== 3. PÁGINA DE RESERVA (ESTILO CLUE) ===================== */
+/* ===================== 3. ESTILOS PÁGINA PRINCIPAL (INDEX) ===================== */
+
+/* Hero Section */
+.hero {
+    padding-top: 140px;
+    padding-bottom: 120px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    text-align: center;
+}
+
+.hero h2 { font-size: 3.5rem; margin-bottom: 1rem; }
+
+/* Botones */
+.btn {
+    padding: 12px 30px;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-primary { background: var(--accent-color); color: white; border: none; }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+
+/* Grid de Servicios */
+.servicios { padding: 80px 0; background: var(--light-bg); text-align: center; }
+
+.servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.servicio-card {
+    background: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.servicio-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+
+/* Galería */
+.galeria { padding: 80px 0; text-align: center; }
+
+.galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.galeria-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+}
+
+/* ===================== 4. ESTILOS PÁGINA RESERVA (TIPO CLUE) ===================== */
+
+/* Contenedor específico para no dañar el index */
 .reserva.container {
     padding-top: 120px;
-    padding-bottom: 60px;
-    max-width: 550px; /* Contenedor estrecho tipo App móvil */
-    margin: 0 auto;
+    max-width: 550px;
 }
 
-.reserva h2 {
-    font-size: 2rem;
-    margin-bottom: 10px;
-    text-align: center;
+.formulario-clue {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
 }
 
-.reserva p {
-    text-align: center;
-    color: #666;
-    margin-bottom: 30px;
-}
-
-.formulario-clue h3 {
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin: 2rem 0 1rem 0;
-    color: #888;
-}
-
-/* --- REJILLA DE TARJETAS (ICONOS) --- */
 .clue-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas de iconos */
     gap: 15px;
+    margin-bottom: 2rem;
 }
 
-.clue-card {
-    cursor: pointer;
-    width: 100%;
-}
-
-.clue-card input {
-    display: none; /* Escondemos el circulito feo del radio button */
-}
+.clue-card input { display: none; } /* Esconde el radio button */
 
 .card-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 25px 10px;
-    border: 2px solid var(--border-clue);
-    border-radius: 20px; /* Bordes muy redondeados tipo Clue */
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    padding: 20px 10px;
+    border: 2px solid #eee;
+    border-radius: 20px;
+    cursor: pointer;
     background: white;
+    transition: 0.3s;
 }
 
-.card-content .icon {
-    font-size: 2.2rem;
-    margin-bottom: 8px;
-}
-
-.card-content .label {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--primary-color);
-}
-
-/* --- ESTADO SELECCIONADO (AL HACER CLIC) --- */
 .clue-card input:checked + .card-content {
     border-color: var(--secondary-color);
-    background-color: #fff5f4; /* Un toque rojizo muy suave */
+    background: #fff5f4;
     transform: scale(1.05);
-    box-shadow: 0 10px 20px rgba(231, 76, 60, 0.1);
-}
-
-.clue-card input:checked + .card-content .label {
-    color: var(--secondary-color);
-}
-
-/* --- INPUTS DE FECHA Y HORA --- */
-.clue-datetime {
-    display: flex;
-    gap: 15px;
 }
 
 .clue-input-inline {
-    flex: 1;
-    padding: 15px;
-    border: 2px solid var(--border-clue);
-    border-radius: 15px;
-    font-family: inherit;
-    font-size: 1rem;
-    outline: none;
-    transition: border-color 0.3s;
-}
-
-.clue-input-inline:focus {
-    border-color: var(--secondary-color);
-}
-
-/* --- CUADRO DE TEXTO (DESCRIPCIÓN) --- */
-textarea {
     width: 100%;
-    padding: 15px;
-    border: 2px solid var(--border-clue);
+    padding: 12px;
     border-radius: 15px;
-    font-family: inherit;
-    font-size: 1rem;
-    resize: none;
-    outline: none;
+    border: 2px solid #eee;
+    margin-bottom: 1rem;
 }
 
-textarea:focus {
-    border-color: var(--secondary-color);
-}
-
-/* --- BOTÓN FINAL (ESTILO APP) --- */
 .btn-guardar-clue {
     width: 100%;
-    background-color: var(--primary-color);
+    background: var(--primary-color);
     color: white;
-    padding: 18px;
-    border-radius: 50px; /* Botón tipo cápsula */
+    padding: 15px;
+    border-radius: 30px;
     border: none;
-    font-weight: bold;
     font-size: 1.1rem;
-    margin-top: 40px;
     cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
+    margin-top: 20px;
 }
 
-.btn-guardar-clue:hover {
-    background-color: var(--secondary-color);
-    transform: translateY(-2px);
-}
-
-/* ===================== 4. FOOTER ===================== */
+/* ===================== 5. FOOTER Y RESPONSIVE ===================== */
 .footer {
-    background-color: var(--primary-color);
+    background: var(--primary-color);
     color: white;
+    padding: 3rem 0;
     text-align: center;
-    padding: 2rem;
-    margin-top: 60px;
+    margin-top: 50px;
 }
 
-/* ===================== 5. RESPONSIVE ===================== */
-@media (max-width: 480px) {
-    .clue-grid {
-        grid-template-columns: repeat(2, 1fr); /* En móviles pequeños 2 columnas */
-    }
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hero h2 { font-size: 2.2rem; }
+    .clue-grid { grid-template-columns: repeat(2, 1fr); }
 }
