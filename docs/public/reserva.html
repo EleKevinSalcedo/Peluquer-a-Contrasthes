@@ -19,32 +19,33 @@
         <div class="clue-stepper">
             
             <div class="step active" id="step1">
-                <h3>1. ¿Cuándo vienes?</h3>
-                
-                <div class="clue-calendar-header">
-                    <span id="monthName">Febrero 2026</span>
-                </div>
-                
-                <div class="clue-calendar-grid">
-                    <div class="day-name">L</div><div class="day-name">M</div><div class="day-name">M</div>
-                    <div class="day-name">J</div><div class="day-name">V</div><div class="day-name">S</div><div class="day-name">D</div>
-                    <div class="day empty"></div><div class="day empty"></div><div class="day empty"></div><div class="day empty"></div><div class="day empty"></div>
-                    <div class="day" onclick="selectDay(this)">1</div>
-                    <div class="day" onclick="selectDay(this)">2</div>
-                    <div class="day selected" onclick="selectDay(this)">3</div>
-                    <div class="day" onclick="selectDay(this)">4</div>
-                    <div class="day" onclick="selectDay(this)">5</div>
-                    <div class="day" onclick="selectDay(this)">6</div>
-                    <div class="day" onclick="selectDay(this)">7</div>
-                    <div class="day" onclick="selectDay(this)">8</div>
-                </div>
+		<h3>1. ¿Cuándo vienes?</h3>
+		
+		<div class="clue-calendar-container">
+			<div class="clue-calendar-header">
+				<button type="button" class="nav-btn" onclick="changeMonth(-1)">❮</button>
+				<span id="monthDisplay">Febrero 2026</span>
+				<button type="button" class="nav-btn" onclick="changeMonth(1)">❯</button>
+			</div>
+			
+			<div class="clue-calendar-grid" id="calendarGrid">
+				</div>
+		</div>
 
-                <div class="clue-time-selector">
-                    <input type="time" id="hora" class="clue-input-large" value="10:00">
-                </div>
+		<div class="clue-time-section">
+			<p class="time-label">Selecciona la hora:</p>
+			<div class="time-grid">
+				<div class="time-chip" onclick="selectTime(this)">09:00</div>
+				<div class="time-chip" onclick="selectTime(this)">10:30</div>
+				<div class="time-chip selected" onclick="selectTime(this)">12:00</div>
+				<div class="time-chip" onclick="selectTime(this)">16:00</div>
+				<div class="time-chip" onclick="selectTime(this)">17:30</div>
+				<div class="time-chip" onclick="selectTime(this)">19:00</div>
+			</div>
+		</div>
 
-                <button type="button" class="btn-clue-next" onclick="nextStep(2)">Siguiente</button>
-            </div>
+		<button type="button" class="btn-clue-next" onclick="nextStep(2)">Siguiente</button>
+	</div>
 
             <div class="step" id="step2" style="display:none;">
                 <h3>2. Elige tu servicio</h3>
