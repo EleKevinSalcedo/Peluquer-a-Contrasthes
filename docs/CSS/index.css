@@ -345,21 +345,24 @@ body {
 
 /* Botón "Atrás" */
 .btn-clue-prev {
-    flex: 1; 
+    flex: 1;
     padding: 18px;
     border-radius: 50px;
-    font-weight: bold;
+    font-weight: 600;
     font-size: 1rem;
     cursor: pointer;
-    background: #f0f2f5;
-    color: #666;
-    border: none;
-    transition: 0.3s;
+
+    background: transparent;
+    border: 2px solid #d6d9de;
+    color: #6b7280;
+
+    transition: all 0.3s ease;
 }
 
 .btn-clue-prev:hover {
-    background: #e4e6e9;
-    color: #333;
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    background: rgba(44, 62, 80, 0.05);
 }
 
 /* Botones Principales (Siguiente / Confirmar) */
