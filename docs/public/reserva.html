@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reserva - Peluquería Contrasthes</title>
     <link rel="stylesheet" href="../CSS/index.css">
-	<link rel="stylesheet" href="../CSS/reserva.css">
+    <link rel="stylesheet" href="../CSS/reserva.css">
 </head>
 <body class="body-reserva"> 
     
@@ -56,21 +56,21 @@
                 <h3>2. Elige tu servicio</h3>
                 <div class="clue-grid">
                     <label class="clue-card">
-                        <input type="radio" name="servicio" value="corte" onclick="showDesc('desc-corte')">
+                        <input type="radio" name="servicio" value="Corte" onclick="showDesc('desc-corte')">
                         <div class="card-content">
                             <span class="icon">💇</span>
                             <span class="label">Corte</span>
                         </div>
                     </label>
                     <label class="clue-card">
-                        <input type="radio" name="servicio" value="color" onclick="showDesc('desc-color')">
+                        <input type="radio" name="servicio" value="Color" onclick="showDesc('desc-color')">
                         <div class="card-content">
                             <span class="icon">🎨</span>
                             <span class="label">Color</span>
                         </div>
                     </label>
                     <label class="clue-card">
-                        <input type="radio" name="servicio" value="tratamiento" onclick="showDesc('desc-trata')">
+                        <input type="radio" name="servicio" value="Tratamiento" onclick="showDesc('desc-trata')">
                         <div class="card-content">
                             <span class="icon">💆</span>
                             <span class="label">Tratamiento</span>
@@ -79,13 +79,13 @@
                 </div>
 
                 <div id="desc-corte" class="extra-info" style="display:none;">
-                    <textarea placeholder="Detalles del corte..."></textarea>
+                    <textarea id="notaCorte" placeholder="Detalles del corte (opcional)..."></textarea>
                 </div>
                 <div id="desc-color" class="extra-info" style="display:none;">
-                    <textarea placeholder="¿Qué color tienes en mente?"></textarea>
+                    <textarea id="notaColor" placeholder="¿Qué color tienes en mente?"></textarea>
                 </div>
                 <div id="desc-trata" class="extra-info" style="display:none;">
-                    <textarea placeholder="Especificaciones del tratamiento..."></textarea>
+                    <textarea id="notaTrata" placeholder="Especificaciones del tratamiento..."></textarea>
                 </div>
 
                 <div class="step-buttons">
@@ -96,12 +96,12 @@
 
             <div class="step" id="step3" style="display:none;">
                 <h3>3. Tus datos</h3>
-                <input type="text" placeholder="Nombre completo" class="clue-input-inline">
-                <input type="tel" placeholder="Tu teléfono" class="clue-input-inline">
+                <input type="text" id="nombreCliente" placeholder="Nombre completo" class="clue-input-inline" required>
+                <input type="tel" id="telCliente" placeholder="Tu teléfono" class="clue-input-inline" required>
                 
                 <div class="step-buttons">
                     <button type="button" class="btn-clue-prev" onclick="nextStep(2)">Atrás</button>
-                    <button type="submit" class="btn-guardar-clue">Confirmar Cita</button>
+                    <button type="button" class="btn-guardar-clue" onclick="finalizarReserva(event)">Confirmar Cita</button>
                 </div>
             </div>
 
@@ -117,15 +117,52 @@
     </footer>
 
     <script>
-        // --- NAVEGACIÓN GENERAL ---
+        // --- NAVEGACIÓN Y VALIDACIÓN ---
         function nextStep(step) {
-            // Ocultar todos los pasos
+            // Validar antes de avanzar al Paso 2
+            if (step === 2 && !validarPaso1()) return;
+            
+            // Validar antes de avanzar al Paso 3
+            if (step === 3 && !validarPaso2()) return;
+
+            // Cambiar de vista
             document.querySelectorAll('.step').forEach(s => s.style.display = 'none');
-            // Mostrar el paso actual
-            const current = document.getElementById('step' + step);
-            current.style.display = 'block';
-            // Scroll suave hacia arriba de la tarjeta
+            const target = document.getElementById('step' + step);
+            target.style.display = 'block';
+            
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function validarPaso1() {
+            const diaSeleccionado = document.querySelector('.day.selected');
+            if (!diaSeleccionado) {
+                alert("Por favor, selecciona qué día quieres venir en el calendario. 📅");
+                return false;
+            }
+            return true;
+        }
+
+        function validarPaso2() {
+            const servicio = document.querySelector('input[name="servicio"]:checked');
+            if (!servicio) {
+                alert("¡Casi terminas! Pero primero debes elegir un servicio. 💇");
+                return false;
+            }
+            return true;
+        }
+
+        function finalizarReserva(event) {
+            const nombre = document.getElementById('nombreCliente').value.trim();
+            const tel = document.getElementById('telCliente').value.trim();
+
+            if (nombre === "" || tel === "") {
+                alert("Necesitamos tu nombre y teléfono para confirmar la cita. 📱");
+                return;
+            }
+
+            // Aquí puedes añadir la lógica para enviar los datos a un servidor o WhatsApp
+            alert("¡Perfecto, " + nombre + "! Tu cita ha sido recibida. Nos vemos pronto en Contrasthes. ✨");
+            // window.location.href = "../index.html"; // Redirigir al inicio tras el éxito
         }
 
         function showDesc(id) {
@@ -133,7 +170,7 @@
             document.getElementById(id).style.display = 'block';
         }
 
-        // --- CONFIGURACIÓN DEL CALENDARIO ---
+        // --- LÓGICA DEL CALENDARIO ---
         let today = new Date();
         let currentMonth = today.getMonth();
         let currentYear = today.getFullYear();
@@ -144,17 +181,14 @@
             let ySelect = document.getElementById("yearSelect");
             let hSelect = document.getElementById("reservaHora");
 
-            // Llenar Meses
             months.forEach((m, i) => {
                 mSelect.innerHTML += `<option value="${i}" ${i === currentMonth ? 'selected' : ''}>${m}</option>`;
             });
 
-            // Llenar Años
-            for (let i = currentYear; i <= currentYear + 5; i++) {
+            for (let i = currentYear; i <= currentYear + 2; i++) {
                 ySelect.innerHTML += `<option value="${i}">${i}</option>`;
             }
 
-            // Llenar Horas
             for (let i = 9; i <= 20; i++) {
                 let h = i < 10 ? '0' + i : i;
                 hSelect.innerHTML += `<option value="${h}">${h}</option>`;
