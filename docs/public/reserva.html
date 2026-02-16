@@ -121,6 +121,59 @@
             document.querySelectorAll('.day').forEach(d => d.classList.remove('selected'));
             element.classList.add('selected');
         }
+
+		let currentDate = new Date(2026, 1, 1); // Empezamos en Feb 2026
+
+		function renderCalendar() {
+			const grid = document.getElementById('calendarGrid');
+			const monthDisplay = document.getElementById('monthDisplay');
+			grid.innerHTML = ''; // Limpiar
+			
+			const year = currentDate.getFullYear();
+			const month = currentDate.getMonth();
+			
+			// Nombres de meses
+			const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+								"Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+			monthDisplay.innerText = `${monthNames[month]} ${year}`;
+
+			// Cabecera de días
+			['L','M','M','J','V','S','D'].forEach(d => {
+				grid.innerHTML += `<div class="day-name">${d}</div>`;
+			});
+
+			// Obtener primer día y total de días
+			const firstDay = new Date(year, month, 1).getDay();
+			const daysInMonth = new Date(year, month + 1, 0).getDate();
+			
+			// Ajuste para que Lunes sea el primer día (0)
+			let startingSpace = firstDay === 0 ? 6 : firstDay - 1;
+
+			// Espacios vacíos
+			for(let i=0; i<startingSpace; i++) {
+				grid.innerHTML += `<div class="day empty"></div>`;
+			}
+
+			// Días del mes
+			for(let day=1; day<=daysInMonth; day++) {
+				grid.innerHTML += `<div class="day" onclick="selectDay(this)">${day}</div>`;
+			}
+		}
+
+		function changeMonth(diff) {
+			currentDate.setMonth(currentDate.getMonth() + diff);
+			renderCalendar();
+		}
+
+		function selectTime(element) {
+			document.querySelectorAll('.time-chip').forEach(t => t.classList.remove('selected'));
+			element.classList.add('selected');
+		}
+
+		// Iniciar al cargar
+		renderCalendar();
     </script>
+
+	
 </body>
 </html>

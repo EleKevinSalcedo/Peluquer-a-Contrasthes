@@ -355,3 +355,58 @@ body {
     .clue-grid { grid-template-columns: repeat(2, 1fr); }
     .clue-stepper { padding: 25px; }
 }
+
+/* --- NAVEGACIÓN DEL MES --- */
+.clue-calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--secondary-color);
+    padding: 5px 10px;
+}
+
+/* --- SELECTOR DE HORA (CHIPS) --- */
+.clue-time-section {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.time-label {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 15px;
+}
+
+.time-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.time-chip {
+    padding: 12px 5px;
+    border: 2px solid #eee;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.time-chip:hover { border-color: var(--secondary-color); }
+
+.time-chip.selected {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
