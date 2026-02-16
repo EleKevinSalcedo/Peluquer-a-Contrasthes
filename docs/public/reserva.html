@@ -21,50 +21,75 @@
 	</nav>
 
 	<section class="reserva container">
-		<h2>Reservar Cita</h2>
-		<p>Completa el formulario para solicitar tu cita. Te contactaremos para confirmar.</p>
+    <div class="clue-stepper">
+        <div class="step active" id="step1">
+            <h3>1. ¿Cuándo vienes?</h3>
+            <div class="clue-calendar-box">
+                <input type="date" id="fecha" class="clue-input-large" required>
+                <input type="time" id="hora" class="clue-input-large" required>
+            </div>
+            <button type="button" class="btn-clue-next" onclick="nextStep(2)">Siguiente</button>
+        </div>
 
-		<form id="reserva-form" class="formulario-clue" onsubmit="handleSubmit(event)">
-		
-		<h3>1. Selecciona tu servicio</h3>
-		<div class="clue-grid">
-			<label class="clue-card">
-				<input type="radio" name="servicio" value="corte" required>
-				<div class="card-content">
-					<span class="icon">💇</span>
-					<span class="label">Corte</span>
-				</div>
-			</label>
-			<label class="clue-card">
-				<input type="radio" name="servicio" value="tinte">
-				<div class="card-content">
-					<span class="icon">🎨</span>
-					<span class="label">Color</span>
-				</div>
-			</label>
-			<label class="clue-card">
-				<input type="radio" name="servicio" value="tratamiento">
-				<div class="card-content">
-					<span class="icon">💆</span>
-					<span class="label">Tratamiento</span>
-				</div>
-			</label>
-		</div>
+        <div class="step" id="step2" style="display:none;">
+            <h3>2. Elige tu servicio</h3>
+            <div class="clue-grid">
+                <label class="clue-card">
+                    <input type="radio" name="servicio" value="corte" onclick="showDesc('desc-corte')">
+                    <div class="card-content">
+                        <span class="icon">💇</span>
+                        <span class="label">Corte</span>
+                    </div>
+                </label>
+                <label class="clue-card">
+                    <input type="radio" name="servicio" value="color" onclick="showDesc('desc-color')">
+                    <div class="card-content">
+                        <span class="icon">🎨</span>
+                        <span class="label">Color</span>
+                    </div>
+                </label>
+                <label class="clue-card">
+                    <input type="radio" name="servicio" value="tratamiento" onclick="showDesc('desc-trata')">
+                    <div class="card-content">
+                        <span class="icon">💆</span>
+                        <span class="label">Tratamiento</span>
+                    </div>
+                </label>
+            </div>
 
-		<h3>2. ¿Cuándo vienes?</h3>
-		<div class="clue-datetime">
-			<input type="date" name="fecha" class="clue-input-inline" required>
-			<input type="time" name="hora" class="clue-input-inline" required>
-		</div>
+            <div id="desc-corte" class="extra-info" style="display:none;">
+                <textarea placeholder="Detalles para tu corte (ej: solo puntas, degradado...)"></textarea>
+            </div>
+            <div id="desc-color" class="extra-info" style="display:none;">
+                <textarea placeholder="Detalles del color (ej: baño de luz, mechas...)"></textarea>
+            </div>
+            <div id="desc-trata" class="extra-info" style="display:none;">
+                <textarea placeholder="¿Alguna alergia o tratamiento previo?"></textarea>
+            </div>
 
-		<h3>3. Detalles especiales</h3>
-		<textarea name="mensaje" placeholder="Ej: Tengo el pelo muy largo, quiero un cambio radical..." rows="3"></textarea>
+            <button type="button" class="btn-clue-next" onclick="nextStep(3)">Siguiente</button>
+        </div>
 
-		<button type="submit" class="btn-guardar-clue">Confirmar Cita</button>
-	</form>
+        <div class="step" id="step3" style="display:none;">
+            <h3>3. Tus datos</h3>
+            <input type="text" placeholder="Nombre completo" class="clue-input-inline">
+            <input type="tel" placeholder="Teléfono" class="clue-input-inline">
+            <button type="submit" class="btn-guardar-clue">Confirmar Reserva</button>
+        </div>
+    </div>
+</section>
 
-		<p><a href="../index.html" class="btn">Volver al inicio</a></p>
-	</section>
+<script>
+    function nextStep(step) {
+        document.querySelectorAll('.step').forEach(s => s.style.display = 'none');
+        document.getElementById('step' + step).style.display = 'block';
+    }
+
+    function showDesc(id) {
+        document.querySelectorAll('.extra-info').forEach(d => d.style.display = 'none');
+        document.getElementById(id).style.display = 'block';
+    }
+</script>
 
 	<footer class="footer">
 		<div class="container">
