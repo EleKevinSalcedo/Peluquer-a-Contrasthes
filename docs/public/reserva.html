@@ -1,118 +1,125 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Reservar Cita — Peluquería Contrasthes</title>
-	<link rel="stylesheet" href="../CSS/index.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva - Peluquería Contrasthes</title>
+    <link rel="stylesheet" href="../CSS/index.css">
 </head>
-<body>
-	<nav class="navbar">
-		<div class="container">
-			<div class="navbar-brand"><h1>✂️ Contrasthes</h1></div>
-			<ul class="nav-links">
-				<li><a href="../index.html#inicio">Inicio</a></li>
-				<li><a href="../index.html#servicios">Servicios</a></li>
-				<li><a href="../index.html#galeria">Galería</a></li>
-				<li><a href="../index.html#contacto">Contacto</a></li>
-			</ul>
-		</div>
-	</nav>
-
-	<section class="reserva container">
-    <div class="clue-stepper">
-        <div class="step active" id="step1">
-            <h3>1. ¿Cuándo vienes?</h3>
-            <div class="clue-calendar-box">
-                <input type="date" id="fecha" class="clue-input-large" required>
-                <input type="time" id="hora" class="clue-input-large" required>
-            </div>
-            <button type="button" class="btn-clue-next" onclick="nextStep(2)">Siguiente</button>
+<body class="body-reserva"> <nav class="navbar">
+        <div class="container">
+            <h1>✂️ Contrasthes</h1>
+            <ul class="nav-links">
+                <li><a href="../index.html">Inicio</a></li>
+            </ul>
         </div>
+    </nav>
 
-        <div class="step" id="step2" style="display:none;">
-            <h3>2. Elige tu servicio</h3>
-            <div class="clue-grid">
-                <label class="clue-card">
-                    <input type="radio" name="servicio" value="corte" onclick="showDesc('desc-corte')">
-                    <div class="card-content">
-                        <span class="icon">💇</span>
-                        <span class="label">Corte</span>
-                    </div>
-                </label>
-                <label class="clue-card">
-                    <input type="radio" name="servicio" value="color" onclick="showDesc('desc-color')">
-                    <div class="card-content">
-                        <span class="icon">🎨</span>
-                        <span class="label">Color</span>
-                    </div>
-                </label>
-                <label class="clue-card">
-                    <input type="radio" name="servicio" value="tratamiento" onclick="showDesc('desc-trata')">
-                    <div class="card-content">
-                        <span class="icon">💆</span>
-                        <span class="label">Tratamiento</span>
-                    </div>
-                </label>
-            </div>
+    <section class="reserva container">
+        <div class="clue-stepper">
+            
+            <div class="step active" id="step1">
+                <h3>1. ¿Cuándo vienes?</h3>
+                
+                <div class="clue-calendar-header">
+                    <span id="monthName">Febrero 2026</span>
+                </div>
+                
+                <div class="clue-calendar-grid">
+                    <div class="day-name">L</div><div class="day-name">M</div><div class="day-name">M</div>
+                    <div class="day-name">J</div><div class="day-name">V</div><div class="day-name">S</div><div class="day-name">D</div>
+                    <div class="day empty"></div><div class="day empty"></div><div class="day empty"></div><div class="day empty"></div><div class="day empty"></div>
+                    <div class="day" onclick="selectDay(this)">1</div>
+                    <div class="day" onclick="selectDay(this)">2</div>
+                    <div class="day selected" onclick="selectDay(this)">3</div>
+                    <div class="day" onclick="selectDay(this)">4</div>
+                    <div class="day" onclick="selectDay(this)">5</div>
+                    <div class="day" onclick="selectDay(this)">6</div>
+                    <div class="day" onclick="selectDay(this)">7</div>
+                    <div class="day" onclick="selectDay(this)">8</div>
+                </div>
 
-            <div id="desc-corte" class="extra-info" style="display:none;">
-                <textarea placeholder="Detalles para tu corte (ej: solo puntas, degradado...)"></textarea>
-            </div>
-            <div id="desc-color" class="extra-info" style="display:none;">
-                <textarea placeholder="Detalles del color (ej: baño de luz, mechas...)"></textarea>
-            </div>
-            <div id="desc-trata" class="extra-info" style="display:none;">
-                <textarea placeholder="¿Alguna alergia o tratamiento previo?"></textarea>
+                <div class="clue-time-selector">
+                    <input type="time" id="hora" class="clue-input-large" value="10:00">
+                </div>
+
+                <button type="button" class="btn-clue-next" onclick="nextStep(2)">Siguiente</button>
             </div>
 
-            <button type="button" class="btn-clue-next" onclick="nextStep(3)">Siguiente</button>
+            <div class="step" id="step2" style="display:none;">
+                <h3>2. Elige tu servicio</h3>
+                <div class="clue-grid">
+                    <label class="clue-card">
+                        <input type="radio" name="servicio" value="corte" onclick="showDesc('desc-corte')">
+                        <div class="card-content">
+                            <span class="icon">💇</span>
+                            <span class="label">Corte</span>
+                        </div>
+                    </label>
+                    <label class="clue-card">
+                        <input type="radio" name="servicio" value="color" onclick="showDesc('desc-color')">
+                        <div class="card-content">
+                            <span class="icon">🎨</span>
+                            <span class="label">Color</span>
+                        </div>
+                    </label>
+                    <label class="clue-card">
+                        <input type="radio" name="servicio" value="tratamiento" onclick="showDesc('desc-trata')">
+                        <div class="card-content">
+                            <span class="icon">💆</span>
+                            <span class="label">Tratamiento</span>
+                        </div>
+                    </label>
+                </div>
+
+                <div id="desc-corte" class="extra-info" style="display:none;">
+                    <textarea placeholder="Detalles del corte..."></textarea>
+                </div>
+                <div id="desc-color" class="extra-info" style="display:none;">
+                    <textarea placeholder="¿Qué color tienes en mente?"></textarea>
+                </div>
+                <div id="desc-trata" class="extra-info" style="display:none;">
+                    <textarea placeholder="Especificaciones del tratamiento..."></textarea>
+                </div>
+
+                <button type="button" class="btn-clue-next" onclick="nextStep(3)">Siguiente</button>
+            </div>
+
+            <div class="step" id="step3" style="display:none;">
+                <h3>3. Tus datos</h3>
+                <input type="text" placeholder="Nombre completo" class="clue-input-inline">
+                <input type="tel" placeholder="Tu teléfono" class="clue-input-inline">
+                
+                <button type="submit" class="btn-guardar-clue">Confirmar Cita</button>
+            </div>
+
+            <div class="atencion-especial">
+                <p>✨ ¿Dudas con tu reserva?</p>
+                <a href="tel:+34612345678">Llámanos al +34 612 345 678</a>
+            </div>
+
         </div>
+    </section>
 
-        <div class="step" id="step3" style="display:none;">
-            <h3>3. Tus datos</h3>
-            <input type="text" placeholder="Nombre completo" class="clue-input-inline">
-            <input type="tel" placeholder="Teléfono" class="clue-input-inline">
-            <button type="submit" class="btn-guardar-clue">Confirmar Reserva</button>
-        </div>
-    </div>
-</section>
+    <footer class="footer">
+        <p>&copy; 2026 Peluquería Contrasthes. Todos los derechos reservados.</p>
+    </footer>
 
-<script>
-    function nextStep(step) {
-        document.querySelectorAll('.step').forEach(s => s.style.display = 'none');
-        document.getElementById('step' + step).style.display = 'block';
-    }
+    <script>
+        function nextStep(step) {
+            document.querySelectorAll('.step').forEach(s => s.style.display = 'none');
+            document.getElementById('step' + step).style.display = 'block';
+        }
 
-    function showDesc(id) {
-        document.querySelectorAll('.extra-info').forEach(d => d.style.display = 'none');
-        document.getElementById(id).style.display = 'block';
-    }
-</script>
+        function showDesc(id) {
+            document.querySelectorAll('.extra-info').forEach(d => d.style.display = 'none');
+            document.getElementById(id).style.display = 'block';
+        }
 
-	<footer class="footer">
-		<div class="container">
-			<p>&copy; 2026 Peluquería Contrasthes. Todos los derechos reservados.</p>
-		</div>
-	</footer>
-
-	<script>
-		function handleSubmit(e){
-			e.preventDefault();
-			const form = document.getElementById('reserva-form');
-			const data = Object.fromEntries(new FormData(form).entries());
-			alert('Reserva solicitada. Revisaremos y te confirmaremos por email o teléfono.\n\n' + JSON.stringify(data, null, 2));
-			form.reset();
-		}
-	</script>
-
-	<div class="clue-stepper">
-    <div class="atencion-especial">
-        <p>✨ ¿Necesitas una atención más personalizada o tienes dudas?</p>
-        <a href="tel:+34612345678">Llámanos directamente al +34 612 345 678</a>
-    </div>
-</div>
-
+        function selectDay(element) {
+            document.querySelectorAll('.day').forEach(d => d.classList.remove('selected'));
+            element.classList.add('selected');
+        }
+    </script>
 </body>
 </html>

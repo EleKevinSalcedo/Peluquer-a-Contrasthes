@@ -190,28 +190,77 @@ body {
     letter-spacing: 1px;
 }
 
-/* --- ELEMENTOS DE FORMULARIO (CALENDARIO Y TEXTO) --- */
-.clue-calendar-box {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+/* --- CALENDARIO VISUAL (REEMPLAZA AL NATIVO) --- */
+.clue-calendar-header {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: var(--primary-color);
 }
 
-.clue-input-large, .clue-input-inline, textarea {
-    width: 100%;
-    background: #fdfdfd;
-    border: 2px solid #eee;
-    padding: 18px;
+.clue-calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    margin-bottom: 20px;
+    background: #f9f9f9;
+    padding: 15px;
     border-radius: 20px;
-    font-family: inherit;
-    font-size: 1.1rem;
-    transition: 0.3s;
-    outline: none;
 }
 
-.clue-input-large:focus, textarea:focus {
-    border-color: var(--secondary-color);
-    background: #fff5f4;
+.day-name {
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: #999;
+    text-align: center;
+    padding-bottom: 5px;
+}
+
+.day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.day:hover:not(.empty) {
+    background: #eee;
+}
+
+.day.selected {
+    background: var(--secondary-color) !important;
+    color: white !important;
+    font-weight: bold;
+    transform: scale(1.1);
+}
+
+.day.empty { cursor: default; }
+
+/* --- AJUSTE DEL CUADRO DE ATENCIÓN --- */
+.atencion-especial {
+    margin-top: 30px;
+    padding: 15px;
+    background-color: #fff9e6; /* Color crema suave */
+    border-radius: 20px;
+    border: 1px dashed var(--accent-color);
+    text-align: center;
+}
+
+.atencion-especial p {
+    font-size: 0.85rem;
+    color: #555;
+    margin-bottom: 4px;
+}
+
+.atencion-especial a {
+    color: var(--secondary-color);
+    font-size: 0.95rem;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 /* --- REJILLA DE SERVICIOS (TARJETAS CLUE) --- */
