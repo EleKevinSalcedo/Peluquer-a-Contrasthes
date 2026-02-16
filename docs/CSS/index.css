@@ -35,7 +35,12 @@ body {
     top: 0;
     z-index: 100;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+.navbar.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
 }
 
 .navbar .container {

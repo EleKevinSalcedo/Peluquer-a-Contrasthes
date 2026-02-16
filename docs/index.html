@@ -154,12 +154,12 @@ const navbar = document.querySelector('.navbar');
 window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
 
-    if (currentScroll > lastScroll) {
-        // Bajando
-        navbar.style.transform = "translateY(-100%)";
-    } else {
-        // Subiendo
-        navbar.style.transform = "translateY(0)";
+    // margen de tolerancia de 5px
+    if (currentScroll > lastScroll + 5) {
+        navbar.classList.add('hidden');
+    } 
+    else if (currentScroll < lastScroll - 5) {
+        navbar.classList.remove('hidden');
     }
 
     lastScroll = currentScroll;
