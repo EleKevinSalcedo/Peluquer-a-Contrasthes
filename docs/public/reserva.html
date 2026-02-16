@@ -24,45 +24,44 @@
 		<h2>Reservar Cita</h2>
 		<p>Completa el formulario para solicitar tu cita. Te contactaremos para confirmar.</p>
 
-		<form id="reserva-form" class="formulario" method="post" action="#" onsubmit="handleSubmit(event)">
-			<label>Nombre completo
-				<input type="text" name="nombre" placeholder="Tu nombre" required>
+		<form id="reserva-form" class="formulario-clue" onsubmit="handleSubmit(event)">
+		
+		<h3>1. Selecciona tu servicio</h3>
+		<div class="clue-grid">
+			<label class="clue-card">
+				<input type="radio" name="servicio" value="corte" required>
+				<div class="card-content">
+					<span class="icon">💇</span>
+					<span class="label">Corte</span>
+				</div>
 			</label>
-
-			<label>Email
-				<input type="email" name="email" placeholder="tu@email.com" required>
+			<label class="clue-card">
+				<input type="radio" name="servicio" value="tinte">
+				<div class="card-content">
+					<span class="icon">🎨</span>
+					<span class="label">Color</span>
+				</div>
 			</label>
-
-			<label>Teléfono
-				<input type="tel" name="telefono" placeholder="+34 612 345 678">
+			<label class="clue-card">
+				<input type="radio" name="servicio" value="tratamiento">
+				<div class="card-content">
+					<span class="icon">💆</span>
+					<span class="label">Tratamiento</span>
+				</div>
 			</label>
+		</div>
 
-			<label>Servicio
-				<select name="servicio" required>
-					<option value="">Selecciona un servicio</option>
-					<option value="corte">Corte de Cabello</option>
-					<option value="tinte">Tinte y Coloración</option>
-					<option value="tratamiento">Tratamientos</option>
-					<option value="alisado">Alisados y Permanentes</option>
-					<option value="maquillaje">Maquillaje</option>
-					<option value="paquete">Paquete VIP</option>
-				</select>
-			</label>
+		<h3>2. ¿Cuándo vienes?</h3>
+		<div class="clue-datetime">
+			<input type="date" name="fecha" class="clue-input-inline" required>
+			<input type="time" name="hora" class="clue-input-inline" required>
+		</div>
 
-			<label>Fecha
-				<input type="date" name="fecha" required>
-			</label>
+		<h3>3. Detalles especiales</h3>
+		<textarea name="mensaje" placeholder="Ej: Tengo el pelo muy largo, quiero un cambio radical..." rows="3"></textarea>
 
-			<label>Hora
-				<input type="time" name="hora" required>
-			</label>
-
-			<label>Comentarios
-				<textarea name="mensaje" rows="4" placeholder="Información adicional (opcional)"></textarea>
-			</label>
-
-			<button type="submit" class="btn btn-primary">Solicitar Reserva</button>
-		</form>
+		<button type="submit" class="btn-guardar-clue">Confirmar Cita</button>
+	</form>
 
 		<p><a href="../index.html" class="btn">Volver al inicio</a></p>
 	</section>
