@@ -410,3 +410,38 @@ body {
     color: white;
     border-color: var(--primary-color);
 }
+
+.clue-calendar-header select {
+    background: #f8f9fa;
+    border: 2px solid #eee;
+    padding: 8px 15px;
+    border-radius: 12px;
+    font-family: inherit;
+    font-weight: bold;
+    color: var(--primary-color);
+    cursor: pointer;
+    outline: none;
+}
+
+.clue-calendar-header select:focus {
+    border-color: var(--secondary-color);
+}
+
+/* Arreglo de los botones de hora */
+.time-chip {
+    background: white;
+    border: 2px solid #eee;
+    padding: 12px;
+    border-radius: 15px;
+    font-weight: bold;
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.time-chip.selected {
+    background: var(--secondary-color) !important;
+    color: white !important;
+    border-color: var(--secondary-color) !important;
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+}

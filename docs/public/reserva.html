@@ -6,7 +6,9 @@
     <title>Reserva - Peluquería Contrasthes</title>
     <link rel="stylesheet" href="../CSS/index.css">
 </head>
-<body class="body-reserva"> <nav class="navbar">
+<body class="body-reserva"> 
+    
+    <nav class="navbar">
         <div class="container">
             <h1>✂️ Contrasthes</h1>
             <ul class="nav-links">
@@ -19,33 +21,31 @@
         <div class="clue-stepper">
             
             <div class="step active" id="step1">
-		<h3>1. ¿Cuándo vienes?</h3>
-		
-		<div class="clue-calendar-container">
-			<div class="clue-calendar-header">
-				<button type="button" class="nav-btn" onclick="changeMonth(-1)">❮</button>
-				<span id="monthDisplay">Febrero 2026</span>
-				<button type="button" class="nav-btn" onclick="changeMonth(1)">❯</button>
-			</div>
-			
-			<div class="clue-calendar-grid" id="calendarGrid">
-				</div>
-		</div>
+                <h3>1. ¿Cuándo vienes?</h3>
+                
+                <div class="clue-calendar-container">
+                    <div class="clue-calendar-header">
+                        <select id="monthSelect" onchange="jump()"></select>
+                        <select id="yearSelect" onchange="jump()"></select>
+                    </div>
 
-		<div class="clue-time-section">
-			<p class="time-label">Selecciona la hora:</p>
-			<div class="time-grid">
-				<div class="time-chip" onclick="selectTime(this)">09:00</div>
-				<div class="time-chip" onclick="selectTime(this)">10:30</div>
-				<div class="time-chip selected" onclick="selectTime(this)">12:00</div>
-				<div class="time-chip" onclick="selectTime(this)">16:00</div>
-				<div class="time-chip" onclick="selectTime(this)">17:30</div>
-				<div class="time-chip" onclick="selectTime(this)">19:00</div>
-			</div>
-		</div>
+                    <div class="clue-calendar-grid" id="calendarGrid"></div>
 
-		<button type="button" class="btn-clue-next" onclick="nextStep(2)">Siguiente</button>
-	</div>
+                    <div class="clue-time-section">
+                        <p class="time-label">Selecciona la hora:</p>
+                        <div class="time-grid">
+                            <button type="button" class="time-chip" onclick="selectTime(this)">09:00</button>
+                            <button type="button" class="time-chip" onclick="selectTime(this)">10:30</button>
+                            <button type="button" class="time-chip selected" onclick="selectTime(this)">12:00</button>
+                            <button type="button" class="time-chip" onclick="selectTime(this)">16:00</button>
+                            <button type="button" class="time-chip" onclick="selectTime(this)">17:30</button>
+                            <button type="button" class="time-chip" onclick="selectTime(this)">19:00</button>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" class="btn-clue-next" onclick="nextStep(2)">Siguiente</button>
+            </div>
 
             <div class="step" id="step2" style="display:none;">
                 <h3>2. Elige tu servicio</h3>
@@ -74,7 +74,7 @@
                 </div>
 
                 <div id="desc-corte" class="extra-info" style="display:none;">
-                    <textarea placeholder="Detalles del corte..."></textarea>
+                    <textarea placeholder="Detalles del corte (ej: solo puntas)..."></textarea>
                 </div>
                 <div id="desc-color" class="extra-info" style="display:none;">
                     <textarea placeholder="¿Qué color tienes en mente?"></textarea>
@@ -107,6 +107,7 @@
     </footer>
 
     <script>
+        // --- LÓGICA DE NAVEGACIÓN ---
         function nextStep(step) {
             document.querySelectorAll('.step').forEach(s => s.style.display = 'none');
             document.getElementById('step' + step).style.display = 'block';
@@ -117,63 +118,63 @@
             document.getElementById(id).style.display = 'block';
         }
 
+        // --- LÓGICA DEL CALENDARIO ---
+        let today = new Date();
+        let currentMonth = today.getMonth();
+        let currentYear = today.getFullYear();
+        const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+
+        function initSelects() {
+            let mSelect = document.getElementById("monthSelect");
+            let ySelect = document.getElementById("yearSelect");
+
+            months.forEach((m, i) => {
+                mSelect.innerHTML += `<option value="${i}" ${i === currentMonth ? 'selected' : ''}>${m}</option>`;
+            });
+
+            for (let i = currentYear; i <= currentYear + 5; i++) {
+                ySelect.innerHTML += `<option value="${i}" ${i === currentYear ? 'selected' : ''}>${i}</option>`;
+            }
+            renderCalendar(currentMonth, currentYear);
+        }
+
+        function renderCalendar(month, year) {
+            let grid = document.getElementById("calendarGrid");
+            grid.innerHTML = "";
+            
+            ['L','M','M','J','V','S','D'].forEach(d => grid.innerHTML += `<div class="day-name">${d}</div>`);
+
+            let firstDay = (new Date(year, month)).getDay();
+            let daysInMonth = 32 - new Date(year, month, 32).getDate();
+            let adjFirstDay = (firstDay === 0) ? 6 : firstDay - 1;
+
+            for (let i = 0; i < adjFirstDay; i++) {
+                grid.innerHTML += `<div class="day empty"></div>`;
+            }
+
+            for (let i = 1; i <= daysInMonth; i++) {
+                grid.innerHTML += `<div class="day" onclick="selectDay(this)">${i}</div>`;
+            }
+        }
+
+        function jump() {
+            currentYear = parseInt(document.getElementById("yearSelect").value);
+            currentMonth = parseInt(document.getElementById("monthSelect").value);
+            renderCalendar(currentMonth, currentYear);
+        }
+
         function selectDay(element) {
             document.querySelectorAll('.day').forEach(d => d.classList.remove('selected'));
             element.classList.add('selected');
         }
 
-		let currentDate = new Date(2026, 1, 1); // Empezamos en Feb 2026
+        function selectTime(element) {
+            document.querySelectorAll('.time-chip').forEach(t => t.classList.remove('selected'));
+            element.classList.add('selected');
+        }
 
-		function renderCalendar() {
-			const grid = document.getElementById('calendarGrid');
-			const monthDisplay = document.getElementById('monthDisplay');
-			grid.innerHTML = ''; // Limpiar
-			
-			const year = currentDate.getFullYear();
-			const month = currentDate.getMonth();
-			
-			// Nombres de meses
-			const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-								"Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-			monthDisplay.innerText = `${monthNames[month]} ${year}`;
-
-			// Cabecera de días
-			['L','M','M','J','V','S','D'].forEach(d => {
-				grid.innerHTML += `<div class="day-name">${d}</div>`;
-			});
-
-			// Obtener primer día y total de días
-			const firstDay = new Date(year, month, 1).getDay();
-			const daysInMonth = new Date(year, month + 1, 0).getDate();
-			
-			// Ajuste para que Lunes sea el primer día (0)
-			let startingSpace = firstDay === 0 ? 6 : firstDay - 1;
-
-			// Espacios vacíos
-			for(let i=0; i<startingSpace; i++) {
-				grid.innerHTML += `<div class="day empty"></div>`;
-			}
-
-			// Días del mes
-			for(let day=1; day<=daysInMonth; day++) {
-				grid.innerHTML += `<div class="day" onclick="selectDay(this)">${day}</div>`;
-			}
-		}
-
-		function changeMonth(diff) {
-			currentDate.setMonth(currentDate.getMonth() + diff);
-			renderCalendar();
-		}
-
-		function selectTime(element) {
-			document.querySelectorAll('.time-chip').forEach(t => t.classList.remove('selected'));
-			element.classList.add('selected');
-		}
-
-		// Iniciar al cargar
-		renderCalendar();
+        // Inicializar al cargar la página
+        initSelects();
     </script>
-
-	
 </body>
 </html>
