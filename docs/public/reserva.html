@@ -32,22 +32,23 @@
                     <div class="clue-calendar-grid" id="calendarGrid"></div>
 
                     <div class="clue-time-section">
-					<p class="time-label">¿A qué hora te esperamos?</p>
-					<div class="custom-time-picker">
-						<select id="reservaHora" class="time-select">
-							</select>
-						<span class="time-separator">:</span>
-						<select id="reservaMinuto" class="time-select">
-							<option value="00">00</option>
-							<option value="15">15</option>
-							<option value="30">30</option>
-							<option value="45">45</option>
-						</select>
-					</div>
-				</div>
+                        <p class="time-label">¿A qué hora te esperamos?</p>
+                        <div class="custom-time-picker">
+                            <select id="reservaHora" class="time-select"></select>
+                            <span class="time-separator">:</span>
+                            <select id="reservaMinuto" class="time-select">
+                                <option value="00">00</option>
+                                <option value="15">15</option>
+                                <option value="30">30</option>
+                                <option value="45">45</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
 
-                <button type="button" class="btn-clue-next" onclick="nextStep(2)">Siguiente</button>
+                <div class="step-buttons">
+                    <button type="button" class="btn-clue-next" onclick="nextStep(2)">Siguiente</button>
+                </div>
             </div>
 
             <div class="step" id="step2" style="display:none;">
@@ -86,18 +87,25 @@
                     <textarea placeholder="Especificaciones del tratamiento..."></textarea>
                 </div>
 
-                <button type="button" class="btn-clue-next" onclick="nextStep(3)">Siguiente</button>
+                <div class="step-buttons">
+                    <button type="button" class="btn-clue-prev" onclick="nextStep(1)">Atrás</button>
+                    <button type="button" class="btn-clue-next" onclick="nextStep(3)">Siguiente</button>
+                </div>
             </div>
 
             <div class="step" id="step3" style="display:none;">
                 <h3>3. Tus datos</h3>
                 <input type="text" placeholder="Nombre completo" class="clue-input-inline">
                 <input type="tel" placeholder="Tu teléfono" class="clue-input-inline">
-                <button type="submit" class="btn-guardar-clue">Confirmar Cita</button>
+                
+                <div class="step-buttons">
+                    <button type="button" class="btn-clue-prev" onclick="nextStep(2)">Atrás</button>
+                    <button type="submit" class="btn-guardar-clue">Confirmar Cita</button>
+                </div>
             </div>
 
             <div class="atencion-especial">
-                <p>✨ ¿Dudas con tu reserva?</p>
+                <p>✨ ¿Dudas con tu reserva o necesitas algo más específico?</p>
                 <a href="tel:+34612345678">Llámanos al +34 612 345 678</a>
             </div>
         </div>
@@ -110,8 +118,13 @@
     <script>
         // --- NAVEGACIÓN GENERAL ---
         function nextStep(step) {
+            // Ocultar todos los pasos
             document.querySelectorAll('.step').forEach(s => s.style.display = 'none');
-            document.getElementById('step' + step).style.display = 'block';
+            // Mostrar el paso actual
+            const current = document.getElementById('step' + step);
+            current.style.display = 'block';
+            // Scroll suave hacia arriba de la tarjeta
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function showDesc(id) {
@@ -119,29 +132,28 @@
             document.getElementById(id).style.display = 'block';
         }
 
-        // --- CONFIGURACIÓN INICIAL ---
+        // --- CONFIGURACIÓN DEL CALENDARIO ---
         let today = new Date();
         let currentMonth = today.getMonth();
         let currentYear = today.getFullYear();
         const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 
-        // Llenar selectores de Fecha y Hora
         function initApp() {
             let mSelect = document.getElementById("monthSelect");
             let ySelect = document.getElementById("yearSelect");
             let hSelect = document.getElementById("reservaHora");
 
-            // Meses
+            // Llenar Meses
             months.forEach((m, i) => {
                 mSelect.innerHTML += `<option value="${i}" ${i === currentMonth ? 'selected' : ''}>${m}</option>`;
             });
 
-            // Años dinámicos (Año actual + 5 años adelante)
+            // Llenar Años
             for (let i = currentYear; i <= currentYear + 5; i++) {
                 ySelect.innerHTML += `<option value="${i}">${i}</option>`;
             }
 
-            // Horas (de 09:00 a 20:00)
+            // Llenar Horas
             for (let i = 9; i <= 20; i++) {
                 let h = i < 10 ? '0' + i : i;
                 hSelect.innerHTML += `<option value="${h}">${h}</option>`;
@@ -154,7 +166,7 @@
             let grid = document.getElementById("calendarGrid");
             grid.innerHTML = "";
             
-            ['L','M','M','J','V','S','D'].forEach(d => grid.innerHTML += `<div class="day-name">${d}</div>`);
+            ['L','M','X','J','V','S','D'].forEach(d => grid.innerHTML += `<div class="day-name">${d}</div>`);
 
             let firstDay = (new Date(year, month)).getDay();
             let daysInMonth = 32 - new Date(year, month, 32).getDate();
@@ -180,7 +192,6 @@
             element.classList.add('selected');
         }
 
-        // Ejecutar al cargar
         initApp();
     </script>
 </body>

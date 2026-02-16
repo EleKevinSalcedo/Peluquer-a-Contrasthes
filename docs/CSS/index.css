@@ -412,3 +412,34 @@ textarea { resize: none; min-height: 100px; }
     .clue-stepper { padding: 25px; }
     .clue-calendar-header select, .time-select { padding: 8px 25px 8px 10px; font-size: 0.9rem; }
 }
+
+/* Contenedor para poner botones uno al lado del otro */
+.step-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.btn-clue-prev {
+    flex: 1; /* Para que ocupen el mismo ancho */
+    padding: 18px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    background: #f0f2f5;
+    color: #666;
+    border: none;
+    transition: 0.3s;
+}
+
+.btn-clue-prev:hover {
+    background: #e4e6e9;
+    color: #333;
+}
+
+/* Ajustamos el botón de Siguiente para que también use flex */
+.btn-clue-next, .btn-guardar-clue {
+    flex: 2; /* El botón de avance es más importante, por eso es más ancho */
+    margin-top: 0 !important; /* Quitamos el margen superior que pusimos antes */
+}
