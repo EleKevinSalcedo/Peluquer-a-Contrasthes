@@ -18,21 +18,22 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     color: var(--text-color);
-    padding-top: 80px; /* ajusta según altura real de tu navbar */
 }
 
+/* Contenedor */
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
-/* Navegación */
+/* ===================== NAVBAR ===================== */
+
 .navbar {
     background-color: var(--primary-color);
     color: white;
     padding: 1rem 0;
-    position: fixed; 
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -42,9 +43,8 @@ body {
 }
 
 .navbar.hidden {
-    transform: translateY(-110%);
+    transform: translateY(-100%);
     opacity: 0;
-    box-shadow: none;
 }
 
 .navbar .container {
@@ -75,17 +75,17 @@ body {
     color: var(--accent-color);
 }
 
-/* Hero Section */
+/* ===================== HERO ===================== */
+
 .hero {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     color: white;
-    padding: 120px 20px;
+    padding: 200px 20px 120px 20px; /* Compensa navbar fija */
     text-align: center;
     min-height: 60vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 0;
 }
 
 .hero-content h2 {
@@ -100,10 +100,10 @@ body {
     opacity: 0.95;
 }
 
-/* Botones */
+/* ===================== BOTONES ===================== */
+
 .btn {
     padding: 12px 30px;
-    border: none;
     border-radius: var(--border-radius);
     font-size: 1rem;
     font-weight: bold;
@@ -124,7 +124,8 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Servicios */
+/* ===================== SERVICIOS ===================== */
+
 .servicios {
     padding: 80px 20px;
     background-color: #f8f9fa;
@@ -157,33 +158,11 @@ body {
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
 }
 
-.servicio-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-}
+/* ===================== GALERÍA ===================== */
 
-.servicio-card h3 {
-    color: var(--primary-color);
-    margin-bottom: 0.5rem;
-    font-size: 1.3rem;
-}
-
-.servicio-card p {
-    color: #555;
-    line-height: 1.5;
-}
-
-/* Galería */
 .galeria {
     padding: 80px 20px;
     background-color: white;
-}
-
-.galeria h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-    color: var(--primary-color);
 }
 
 .galeria-grid {
@@ -192,55 +171,11 @@ body {
     gap: 1.5rem;
 }
 
-.galeria-item {
-    position: relative;
-    overflow: hidden;
-    border-radius: var(--border-radius);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: var(--light-bg);
-    aspect-ratio: 1;
-}
+/* ===================== CONTACTO ===================== */
 
-.galeria-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.galeria-item:hover img {
-    transform: scale(1.05);
-}
-
-.galeria-item p {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-    color: white;
-    padding: 1rem;
-    text-align: center;
-    font-weight: bold;
-    transform: translateY(100%);
-    transition: transform 0.3s ease;
-}
-
-.galeria-item:hover p {
-    transform: translateY(0);
-}
-
-/* Contacto */
 .contacto {
     padding: 80px 20px;
     background-color: #f8f9fa;
-}
-
-.contacto h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-    color: var(--primary-color);
 }
 
 .contacto-content {
@@ -249,27 +184,8 @@ body {
     gap: 3rem;
 }
 
-.info-contacto h3 {
-    color: var(--primary-color);
-    margin-bottom: 1.5rem;
-    font-size: 1.5rem;
-}
+/* ===================== FORMULARIO ===================== */
 
-.contacto-item {
-    margin-bottom: 1.5rem;
-}
-
-.contacto-item strong {
-    color: var(--secondary-color);
-    display: block;
-    margin-bottom: 0.5rem;
-}
-
-.contacto-item p {
-    color: #555;
-}
-
-/* Formulario */
 .formulario {
     display: flex;
     flex-direction: column;
@@ -284,7 +200,6 @@ body {
     border-radius: var(--border-radius);
     font-family: inherit;
     font-size: 1rem;
-    transition: border-color 0.3s ease;
 }
 
 .formulario input:focus,
@@ -294,11 +209,8 @@ body {
     border-color: var(--secondary-color);
 }
 
-.formulario textarea {
-    resize: vertical;
-}
+/* ===================== FOOTER ===================== */
 
-/* Footer */
 .footer {
     background-color: var(--primary-color);
     color: white;
@@ -306,77 +218,15 @@ body {
     padding: 2rem;
 }
 
-.footer .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+/* ===================== RESPONSIVE ===================== */
 
-.social-links {
-    display: flex;
-    gap: 1.5rem;
-}
-
-.social-links a {
-    color: white;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.social-links a:hover {
-    color: var(--accent-color);
-}
-
-/* Responsive */
 @media (max-width: 768px) {
     .nav-links {
         flex-direction: column;
         gap: 1rem;
     }
 
-    .hero-content h2 {
-        font-size: 2rem;
-    }
-
-    .hero-content p {
-        font-size: 1.1rem;
-    }
-
     .contacto-content {
         grid-template-columns: 1fr;
     }
-
-    .footer .container {
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .social-links {
-        justify-content: center;
-    }
-
-    .servicios-grid,
-    .galeria-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero-content h2 {
-        font-size: 1.5rem;
-    }
-
-    .servicios h2,
-    .galeria h2,
-    .contacto h2 {
-        font-size: 1.8rem;
-    }
-
-    .navbar-brand h1 {
-        font-size: 1.3rem;
-    }
-}
-
-html {
-    background-color: #2c3e50;
 }
