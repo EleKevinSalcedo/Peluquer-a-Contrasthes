@@ -9,8 +9,8 @@
     --primary-color: #2c3e50;
     --secondary-color: #e74c3c;
     --accent-color: #f39c12;
-    --bg-clue: #ffffff;
-    --border-clue: #eee;
+    --bg-color: #ffffff;
+    --light-bg: #f8f9fa;
     --border-radius: 12px;
 }
 
@@ -18,7 +18,7 @@ body {
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     line-height: 1.6;
     color: var(--primary-color);
-    background-color: var(--bg-clue);
+    background-color: var(--bg-color);
 }
 
 .container {
@@ -36,6 +36,12 @@ body {
     top: 0;
     width: 100%;
     z-index: 1000;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.navbar.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
 }
 
 .navbar .container {
@@ -57,7 +63,6 @@ body {
 }
 
 /* ===================== HERO ===================== */
-
 .hero {
     margin-top: 80px;
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
@@ -80,8 +85,7 @@ body {
     margin-bottom: 2rem;
 }
 
-/* ===================== BOTONES GENERALES ===================== */
-
+/* ===================== BOTONES ===================== */
 .btn {
     padding: 12px 30px;
     border-radius: var(--border-radius);
@@ -100,33 +104,21 @@ body {
     background-color: var(--secondary-color);
 }
 
-/* ===================== SECCIONES PRINCIPALES ===================== */
-
-.servicios,
-.contacto {
-    padding: 80px 20px;
-}
-
+/* ===================== SERVICIOS ===================== */
 .servicios {
-    background-color: #f8f9fa;
+    padding: 80px 20px;
+    background-color: var(--light-bg);
 }
 
-.contacto {
-    background-color: #f8f9fa;
-}
-
-.servicios-grid,
-.galeria-grid {
-    display: grid;
-    gap: 2rem;
+.servicios h2 {
+    text-align: center;
+    margin-bottom: 3rem;
 }
 
 .servicios-grid {
+    display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-}
-
-.galeria-grid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
 }
 
 .servicio-card {
@@ -135,4 +127,93 @@ body {
     border-radius: var(--border-radius);
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ===================== GALERÍA ===================== */
+.galeria {
+    padding: 80px 20px;
+    background-color: white;
+}
+
+.galeria h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.galeria-item {
+    text-align: center;
+}
+
+.galeria-item img {
+    width: 100%;
+    border-radius: var(--border-radius);
+    margin-bottom: 10px;
+}
+
+/* ===================== CONTACTO ===================== */
+.contacto {
+    padding: 80px 20px;
+    background-color: var(--light-bg);
+}
+
+.contacto h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.contacto-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.info-contacto h3 {
+    margin-bottom: 1rem;
+}
+
+.contacto-item {
+    margin-bottom: 1rem;
+}
+
+.formulario-cta {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* ===================== FOOTER ===================== */
+.footer {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.footer a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 768px) {
+
+    .contacto-content {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-content h2 {
+        font-size: 2rem;
+    }
 }
