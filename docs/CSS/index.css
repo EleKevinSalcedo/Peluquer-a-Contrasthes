@@ -153,7 +153,7 @@ body {
 }
 
 /* =============================================================
-   3. PÁGINA DE RESERVA (ESTILO APP CLUE) - UNIFICADO
+   3. PÁGINA DE RESERVA (ESTILO APP CLUE) - UNIFICADO Y FINAL
    ============================================================= */
 
 /* Fondo general de la subpágina */
@@ -204,12 +204,12 @@ body {
     margin-bottom: 20px;
 }
 
-/* --- ESTILO UNIFICADO PARA TODOS LOS SELECTORES (MAESTRO) --- */
+/* --- ESTILO UNIFICADO PARA TODOS LOS SELECTORES (MES, AÑO, HORA) --- */
 .clue-calendar-header select,
 .time-select {
-    background-color: #f8f9fa; /* Gris suave idéntico a tu captura */
+    background-color: #f8f9fa;
     border: 2px solid #eee;
-    padding: 10px 35px 10px 15px; /* Espacio extra a la derecha para la flecha */
+    padding: 10px 35px 10px 15px;
     border-radius: 12px;
     font-family: inherit;
     font-weight: bold;
@@ -218,8 +218,6 @@ body {
     outline: none;
     transition: 0.3s all ease;
     text-align: center;
-    
-    /* Quitar flecha nativa y poner la personalizada roja */
     appearance: none; 
     -webkit-appearance: none;
     background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23e74c3c' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'%3E%3C/path%3E%3C/svg%3E");
@@ -271,13 +269,10 @@ body {
     box-shadow: 0 5px 10px rgba(231, 76, 60, 0.2);
 }
 
-.day.empty { cursor: default; }
-
-/* --- BLOQUE 2: SELECTOR DE HORA (ESTILO APP COMPACTO) --- */
+/* --- BLOQUE 2: SELECTOR DE HORA --- */
 .clue-time-section {
     margin-top: 25px;
     text-align: center;
-    position: relative;
 }
 
 .time-label {
@@ -292,20 +287,12 @@ body {
     align-items: center;
     gap: 8px;
     margin: 0 auto;
-    padding: 5px;
 }
 
 .time-separator {
     font-size: 1.5rem;
     font-weight: bold;
     color: var(--secondary-color);
-    animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-    0% { opacity: 1; }
-    50% { opacity: 0.4; }
-    100% { opacity: 1; }
 }
 
 /* --- BLOQUE 3: REJILLA DE SERVICIOS --- */
@@ -330,50 +317,54 @@ body {
     background: white;
 }
 
-.card-content .icon { font-size: 2.2rem; margin-bottom: 5px; }
-.card-content .label { font-size: 0.85rem; font-weight: bold; }
-
 .clue-card input:checked + .card-content {
     border-color: var(--secondary-color);
     background-color: #fff5f4;
     transform: scale(1.05);
-    box-shadow: 0 10px 20px rgba(231, 76, 60, 0.1);
 }
 
-/* --- BLOQUE 4: INPUTS Y FORMULARIO --- */
+/* --- BLOQUE 4: INPUTS --- */
 .clue-input-inline, textarea {
     width: 100%;
     padding: 15px;
     border: 2px solid #eee;
     border-radius: 15px;
-    font-family: inherit;
     margin-bottom: 15px;
     outline: none;
     transition: 0.3s;
+    box-sizing: border-box; /* Importante para que no se salgan del cuadro */
 }
 
-.clue-input-inline:focus, textarea:focus {
-    border-color: var(--secondary-color);
-}
-
-textarea { resize: none; min-height: 100px; }
-
-/* --- BLOQUE 5: ATENCIÓN Y BOTONES --- */
-.atencion-especial {
-    margin-top: 35px;
-    padding: 20px;
-    background-color: #fef9e7;
-    border-left: 5px solid var(--accent-color);
-    border-radius: 15px;
-    text-align: center;
-}
-
-.atencion-especial p { font-size: 0.9rem; font-weight: 600; color: var(--primary-color); margin-bottom: 5px; }
-.atencion-especial a { color: var(--secondary-color); font-weight: bold; text-decoration: none; }
-
-.btn-clue-next, .btn-guardar-clue {
-    width: 100%;
+/* --- BLOQUE 5: BOTONES DE NAVEGACIÓN (EL ARREGLO) --- */
+.step-buttons {
+    display: flex;
+    gap: 15px;
     margin-top: 25px;
+    width: 100%;
+}
+
+/* Botón "Atrás" */
+.btn-clue-prev {
+    flex: 1; 
+    padding: 18px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    background: #f0f2f5;
+    color: #666;
+    border: none;
+    transition: 0.3s;
+}
+
+.btn-clue-prev:hover {
+    background: #e4e6e9;
+    color: #333;
+}
+
+/* Botones Principales (Siguiente / Confirmar) */
+.btn-clue-next, .btn-guardar-clue {
+    flex: 2; 
     padding: 18px;
     border-radius: 50px;
     font-weight: bold;
@@ -381,6 +372,8 @@ textarea { resize: none; min-height: 100px; }
     cursor: pointer;
     transition: 0.3s;
     border: none;
+    background: var(--primary-color);
+    color: white;
 }
 
 .btn-clue-next {
@@ -399,47 +392,19 @@ textarea { resize: none; min-height: 100px; }
     color: white;
 }
 
-/* --- ANIMACIONES Y RESPONSIVE --- */
-.step { animation: slideUp 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
+/* --- ATENCIÓN ESPECIAL --- */
+.atencion-especial {
+    margin-top: 35px;
+    padding: 20px;
+    background-color: #fef9e7;
+    border-left: 5px solid var(--accent-color);
+    border-radius: 15px;
+    text-align: center;
+}
 
+/* Animación de entrada */
+.step { animation: slideUp 0.6s ease; }
 @keyframes slideUp {
-    from { opacity: 0; transform: translateY(30px); }
+    from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
-}
-
-@media (max-width: 480px) {
-    .clue-grid { grid-template-columns: repeat(2, 1fr); }
-    .clue-stepper { padding: 25px; }
-    .clue-calendar-header select, .time-select { padding: 8px 25px 8px 10px; font-size: 0.9rem; }
-}
-
-/* Contenedor para poner botones uno al lado del otro */
-.step-buttons {
-    display: flex;
-    gap: 15px;
-    margin-top: 25px;
-}
-
-.btn-clue-prev {
-    flex: 1; /* Para que ocupen el mismo ancho */
-    padding: 18px;
-    border-radius: 50px;
-    font-weight: bold;
-    font-size: 1rem;
-    cursor: pointer;
-    background: #f0f2f5;
-    color: #666;
-    border: none;
-    transition: 0.3s;
-}
-
-.btn-clue-prev:hover {
-    background: #e4e6e9;
-    color: #333;
-}
-
-/* Ajustamos el botón de Siguiente para que también use flex */
-.btn-clue-next, .btn-guardar-clue {
-    flex: 2; /* El botón de avance es más importante, por eso es más ancho */
-    margin-top: 0 !important; /* Quitamos el margen superior que pusimos antes */
 }
