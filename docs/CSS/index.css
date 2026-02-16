@@ -154,12 +154,12 @@ body {
 
 /* ===================== 3. PÁGINA DE RESERVA (ESTILO CLUE) ===================== */
 
-/* Fondo general de la subpágina para resaltar la "App" */
+/* Fondo general de la subpágina */
 .body-reserva {
     background-color: #f0f2f5; 
 }
 
-/* Contenedor principal que centra la tarjeta */
+/* Contenedor principal centrado */
 .reserva.container {
     padding-top: 140px;
     padding-bottom: 80px;
@@ -190,12 +190,29 @@ body {
     letter-spacing: 1px;
 }
 
-/* --- CALENDARIO VISUAL (REEMPLAZA AL NATIVO) --- */
+/* --- CALENDARIO DINÁMICO --- */
 .clue-calendar-header {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.clue-calendar-header select {
+    background: #f8f9fa;
+    border: 2px solid #eee;
+    padding: 8px 15px;
+    border-radius: 12px;
+    font-family: inherit;
     font-weight: bold;
-    margin-bottom: 15px;
     color: var(--primary-color);
+    cursor: pointer;
+    outline: none;
+    transition: 0.3s;
+}
+
+.clue-calendar-header select:focus {
+    border-color: var(--secondary-color);
 }
 
 .clue-calendar-grid {
@@ -213,7 +230,6 @@ body {
     font-weight: bold;
     color: #999;
     text-align: center;
-    padding-bottom: 5px;
 }
 
 .day {
@@ -227,153 +243,17 @@ body {
     transition: 0.2s;
 }
 
-.day:hover:not(.empty) {
-    background: #eee;
-}
+.day:hover:not(.empty) { background: #eee; }
 
 .day.selected {
     background: var(--secondary-color) !important;
     color: white !important;
     font-weight: bold;
     transform: scale(1.1);
+    box-shadow: 0 5px 10px rgba(231, 76, 60, 0.2);
 }
 
 .day.empty { cursor: default; }
-
-/* --- AJUSTE DEL CUADRO DE ATENCIÓN --- */
-.atencion-especial {
-    margin-top: 30px;
-    padding: 15px;
-    background-color: #fff9e6; /* Color crema suave */
-    border-radius: 20px;
-    border: 1px dashed var(--accent-color);
-    text-align: center;
-}
-
-.atencion-especial p {
-    font-size: 0.85rem;
-    color: #555;
-    margin-bottom: 4px;
-}
-
-.atencion-especial a {
-    color: var(--secondary-color);
-    font-size: 0.95rem;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-/* --- REJILLA DE SERVICIOS (TARJETAS CLUE) --- */
-.clue-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    margin: 20px 0;
-}
-
-.clue-card input {
-    display: none; /* Esconde el radio button */
-}
-
-.card-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 10px;
-    border: 2px solid #eee;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.card-content .icon { font-size: 2.2rem; margin-bottom: 5px; }
-.card-content .label { font-size: 0.85rem; font-weight: bold; }
-
-/* Estado seleccionado */
-.clue-card input:checked + .card-content {
-    border-color: var(--secondary-color);
-    background-color: #fff5f4;
-    transform: scale(1.05);
-    box-shadow: 0 10px 20px rgba(231, 76, 60, 0.1);
-}
-
-.clue-card input:checked + .card-content .label {
-    color: var(--secondary-color);
-}
-
-/* --- BOTONES DE NAVEGACIÓN --- */
-.btn-clue-next, .btn-guardar-clue {
-    width: 100%;
-    margin-top: 25px;
-    padding: 18px;
-    border-radius: 50px;
-    font-weight: bold;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.btn-clue-next {
-    background: transparent;
-    border: 2px solid var(--primary-color);
-    color: var(--primary-color);
-}
-
-.btn-clue-next:hover {
-    background: var(--primary-color);
-    color: white;
-}
-
-.btn-guardar-clue {
-    background: var(--primary-color);
-    color: white;
-    border: none;
-}
-
-/* --- CUADRO DE ATENCIÓN ESPECIAL --- */
-.atencion-especial {
-    margin-top: 30px;
-    padding: 20px;
-    background-color: #fef9e7;
-    border-left: 5px solid var(--accent-color);
-    border-radius: 15px;
-    text-align: center;
-}
-
-.atencion-especial p { font-size: 0.9rem; font-weight: 600; color: var(--primary-color); }
-.atencion-especial a { color: var(--secondary-color); font-weight: bold; text-decoration: none; }
-
-/* --- ANIMACIONES Y RESPONSIVE --- */
-.step { animation: slideUp 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
-
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@media (max-width: 480px) {
-    .clue-grid { grid-template-columns: repeat(2, 1fr); }
-    .clue-stepper { padding: 25px; }
-}
-
-/* --- NAVEGACIÓN DEL MES --- */
-.clue-calendar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    font-weight: bold;
-    color: var(--primary-color);
-}
-
-.nav-btn {
-    background: none;
-    border: none;
-    font-size: 1.2rem;
-    cursor: pointer;
-    color: var(--secondary-color);
-    padding: 5px 10px;
-}
 
 /* --- SELECTOR DE HORA (CHIPS) --- */
 .clue-time-section {
@@ -394,11 +274,14 @@ body {
 }
 
 .time-chip {
-    padding: 12px 5px;
+    background: white;
     border: 2px solid #eee;
+    padding: 12px;
     border-radius: 15px;
+    font-family: inherit;
     font-size: 0.9rem;
     font-weight: bold;
+    color: var(--primary-color);
     cursor: pointer;
     transition: 0.3s;
 }
@@ -406,42 +289,108 @@ body {
 .time-chip:hover { border-color: var(--secondary-color); }
 
 .time-chip.selected {
-    background: var(--primary-color);
-    color: white;
-    border-color: var(--primary-color);
-}
-
-.clue-calendar-header select {
-    background: #f8f9fa;
-    border: 2px solid #eee;
-    padding: 8px 15px;
-    border-radius: 12px;
-    font-family: inherit;
-    font-weight: bold;
-    color: var(--primary-color);
-    cursor: pointer;
-    outline: none;
-}
-
-.clue-calendar-header select:focus {
-    border-color: var(--secondary-color);
-}
-
-/* Arreglo de los botones de hora */
-.time-chip {
-    background: white;
-    border: 2px solid #eee;
-    padding: 12px;
-    border-radius: 15px;
-    font-weight: bold;
-    color: var(--primary-color);
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.time-chip.selected {
     background: var(--secondary-color) !important;
     color: white !important;
     border-color: var(--secondary-color) !important;
     box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+}
+
+/* --- REJILLA DE SERVICIOS --- */
+.clue-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.clue-card input { display: none; }
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 10px;
+    border: 2px solid #eee;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background: white;
+}
+
+.card-content .icon { font-size: 2.2rem; margin-bottom: 5px; }
+.card-content .label { font-size: 0.85rem; font-weight: bold; }
+
+.clue-card input:checked + .card-content {
+    border-color: var(--secondary-color);
+    background-color: #fff5f4;
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(231, 76, 60, 0.1);
+}
+
+/* --- INPUTS Y TEXTAREAS --- */
+.clue-input-inline, textarea {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #eee;
+    border-radius: 15px;
+    font-family: inherit;
+    margin-bottom: 15px;
+    outline: none;
+}
+
+textarea { resize: none; min-height: 80px; }
+
+/* --- CUADRO DE ATENCIÓN ESPECIAL --- */
+.atencion-especial {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #fef9e7;
+    border-left: 5px solid var(--accent-color);
+    border-radius: 15px;
+    text-align: center;
+}
+
+.atencion-especial p { font-size: 0.9rem; font-weight: 600; color: var(--primary-color); margin-bottom: 5px; }
+.atencion-especial a { color: var(--secondary-color); font-weight: bold; text-decoration: none; }
+
+/* --- BOTONES DE NAVEGACIÓN --- */
+.btn-clue-next, .btn-guardar-clue {
+    width: 100%;
+    margin-top: 25px;
+    padding: 18px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    border: none;
+}
+
+.btn-clue-next {
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-clue-next:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-guardar-clue {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* --- ANIMACIONES Y RESPONSIVE --- */
+.step { animation: slideUp 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 480px) {
+    .clue-grid, .time-grid { grid-template-columns: repeat(2, 1fr); }
+    .clue-stepper { padding: 25px; }
 }
