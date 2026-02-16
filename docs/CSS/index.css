@@ -153,7 +153,7 @@ body {
 }
 
 /* =============================================================
-   3. PÁGINA DE RESERVA (ESTILO APP CLUE)
+   3. PÁGINA DE RESERVA (ESTILO APP CLUE) - UNIFICADO
    ============================================================= */
 
 /* Fondo general de la subpágina */
@@ -204,21 +204,34 @@ body {
     margin-bottom: 20px;
 }
 
-.clue-calendar-header select {
-    background: #f8f9fa;
+/* --- ESTILO UNIFICADO PARA TODOS LOS SELECTORES (MAESTRO) --- */
+.clue-calendar-header select,
+.time-select {
+    background-color: #f8f9fa; /* Gris suave idéntico a tu captura */
     border: 2px solid #eee;
-    padding: 8px 15px;
+    padding: 10px 35px 10px 15px; /* Espacio extra a la derecha para la flecha */
     border-radius: 12px;
     font-family: inherit;
     font-weight: bold;
     color: var(--primary-color);
     cursor: pointer;
     outline: none;
-    transition: 0.3s;
+    transition: 0.3s all ease;
+    text-align: center;
+    
+    /* Quitar flecha nativa y poner la personalizada roja */
+    appearance: none; 
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23e74c3c' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
 }
 
-.clue-calendar-header select:focus {
+.clue-calendar-header select:focus,
+.time-select:focus {
     border-color: var(--secondary-color);
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(231, 76, 60, 0.1);
 }
 
 .clue-calendar-grid {
@@ -260,54 +273,38 @@ body {
 
 .day.empty { cursor: default; }
 
-/* --- BLOQUE 2: SELECTOR DE HORA (CORREGIDO) --- */
+/* --- BLOQUE 2: SELECTOR DE HORA (ESTILO APP COMPACTO) --- */
 .clue-time-section {
-    margin-top: 20px;
+    margin-top: 25px;
     text-align: center;
-    position: relative; /* Mantiene el desplegable bajo control */
+    position: relative;
+}
+
+.time-label {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 12px;
 }
 
 .custom-time-picker {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
-    background: #f8f9fa;
-    padding: 10px 20px;
-    border-radius: 20px;
-    border: 2px solid #eee;
-    max-width: 220px; 
+    gap: 8px;
     margin: 0 auto;
-    transition: 0.3s;
-    overflow: hidden; /* Evita fugas visuales */
-}
-
-.time-select {
-    font-size: 1.4rem;
-    font-weight: bold;
-    border: none;
-    background: transparent;
-    color: var(--primary-color);
-    cursor: pointer;
-    outline: none;
-    text-align: center;
-    padding: 5px 25px 5px 5px; /* Espacio para la flecha */
-    appearance: none; 
-    -webkit-appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23e74c3c' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'%3E%3C/path%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right center;
+    padding: 5px;
 }
 
 .time-separator {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: bold;
     color: var(--secondary-color);
+    animation: pulse 1.5s infinite;
 }
 
 @keyframes pulse {
     0% { opacity: 1; }
-    50% { opacity: 0.3; }
+    50% { opacity: 0.4; }
     100% { opacity: 1; }
 }
 
@@ -413,5 +410,5 @@ textarea { resize: none; min-height: 100px; }
 @media (max-width: 480px) {
     .clue-grid { grid-template-columns: repeat(2, 1fr); }
     .clue-stepper { padding: 25px; }
-    .time-select { font-size: 1.3rem; }
+    .clue-calendar-header select, .time-select { padding: 8px 25px 8px 10px; font-size: 0.9rem; }
 }
