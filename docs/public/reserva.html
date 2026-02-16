@@ -32,14 +32,17 @@
                     <div class="clue-calendar-grid" id="calendarGrid"></div>
 
                     <div class="clue-time-section">
-                        <p class="time-label">Selecciona la hora:</p>
-                        <div class="time-grid">
-                            <button type="button" class="time-chip" onclick="selectTime(this)">09:00</button>
-                            <button type="button" class="time-chip" onclick="selectTime(this)">10:30</button>
-                            <button type="button" class="time-chip selected" onclick="selectTime(this)">12:00</button>
-                            <button type="button" class="time-chip" onclick="selectTime(this)">16:00</button>
-                            <button type="button" class="time-chip" onclick="selectTime(this)">17:30</button>
-                            <button type="button" class="time-chip" onclick="selectTime(this)">19:00</button>
+                        <p class="time-label">¿A qué hora te esperamos?</p>
+                        <div class="custom-time-picker">
+                            <select id="reservaHora" class="time-select">
+                                </select>
+                            <span class="time-separator">:</span>
+                            <select id="reservaMinuto" class="time-select">
+                                <option value="00">00</option>
+                                <option value="15">15</option>
+                                <option value="30">30</option>
+                                <option value="45">45</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -74,7 +77,7 @@
                 </div>
 
                 <div id="desc-corte" class="extra-info" style="display:none;">
-                    <textarea placeholder="Detalles del corte (ej: solo puntas)..."></textarea>
+                    <textarea placeholder="Detalles del corte..."></textarea>
                 </div>
                 <div id="desc-color" class="extra-info" style="display:none;">
                     <textarea placeholder="¿Qué color tienes en mente?"></textarea>
@@ -90,7 +93,6 @@
                 <h3>3. Tus datos</h3>
                 <input type="text" placeholder="Nombre completo" class="clue-input-inline">
                 <input type="tel" placeholder="Tu teléfono" class="clue-input-inline">
-                
                 <button type="submit" class="btn-guardar-clue">Confirmar Cita</button>
             </div>
 
@@ -98,7 +100,6 @@
                 <p>✨ ¿Dudas con tu reserva?</p>
                 <a href="tel:+34612345678">Llámanos al +34 612 345 678</a>
             </div>
-
         </div>
     </section>
 
@@ -107,7 +108,7 @@
     </footer>
 
     <script>
-        // --- LÓGICA DE NAVEGACIÓN ---
+        // --- NAVEGACIÓN GENERAL ---
         function nextStep(step) {
             document.querySelectorAll('.step').forEach(s => s.style.display = 'none');
             document.getElementById('step' + step).style.display = 'block';
@@ -118,23 +119,34 @@
             document.getElementById(id).style.display = 'block';
         }
 
-        // --- LÓGICA DEL CALENDARIO ---
+        // --- CONFIGURACIÓN INICIAL ---
         let today = new Date();
         let currentMonth = today.getMonth();
         let currentYear = today.getFullYear();
         const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 
-        function initSelects() {
+        // Llenar selectores de Fecha y Hora
+        function initApp() {
             let mSelect = document.getElementById("monthSelect");
             let ySelect = document.getElementById("yearSelect");
+            let hSelect = document.getElementById("reservaHora");
 
+            // Meses
             months.forEach((m, i) => {
                 mSelect.innerHTML += `<option value="${i}" ${i === currentMonth ? 'selected' : ''}>${m}</option>`;
             });
 
+            // Años dinámicos (Año actual + 5 años adelante)
             for (let i = currentYear; i <= currentYear + 5; i++) {
-                ySelect.innerHTML += `<option value="${i}" ${i === currentYear ? 'selected' : ''}>${i}</option>`;
+                ySelect.innerHTML += `<option value="${i}">${i}</option>`;
             }
+
+            // Horas (de 09:00 a 20:00)
+            for (let i = 9; i <= 20; i++) {
+                let h = i < 10 ? '0' + i : i;
+                hSelect.innerHTML += `<option value="${h}">${h}</option>`;
+            }
+
             renderCalendar(currentMonth, currentYear);
         }
 
@@ -168,13 +180,8 @@
             element.classList.add('selected');
         }
 
-        function selectTime(element) {
-            document.querySelectorAll('.time-chip').forEach(t => t.classList.remove('selected'));
-            element.classList.add('selected');
-        }
-
-        // Inicializar al cargar la página
-        initSelects();
+        // Ejecutar al cargar
+        initApp();
     </script>
 </body>
 </html>

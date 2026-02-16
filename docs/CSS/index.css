@@ -152,7 +152,9 @@ body {
     gap: 3rem;
 }
 
-/* ===================== 3. PÁGINA DE RESERVA (ESTILO CLUE) ===================== */
+/* =============================================================
+   3. PÁGINA DE RESERVA (ESTILO APP CLUE)
+   ============================================================= */
 
 /* Fondo general de la subpágina */
 .body-reserva {
@@ -190,7 +192,11 @@ body {
     letter-spacing: 1px;
 }
 
-/* --- CALENDARIO DINÁMICO --- */
+/* --- BLOQUE 1: CALENDARIO DINÁMICO --- */
+.clue-calendar-container {
+    margin-bottom: 25px;
+}
+
 .clue-calendar-header {
     display: flex;
     justify-content: center;
@@ -219,7 +225,6 @@ body {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 8px;
-    margin-bottom: 20px;
     background: #f9f9f9;
     padding: 15px;
     border-radius: 20px;
@@ -255,9 +260,9 @@ body {
 
 .day.empty { cursor: default; }
 
-/* --- SELECTOR DE HORA (CHIPS) --- */
+/* --- BLOQUE 2: SELECTOR DE HORA (TIME PICKER) --- */
 .clue-time-section {
-    margin-top: 25px;
+    margin-top: 30px;
     text-align: center;
 }
 
@@ -267,35 +272,51 @@ body {
     margin-bottom: 15px;
 }
 
-.time-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+.custom-time-picker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    background: #f8f9fa;
+    padding: 15px 25px;
+    border-radius: 20px;
+    border: 2px solid #eee;
+    max-width: 280px;
+    margin: 0 auto;
+    transition: 0.3s ease;
 }
 
-.time-chip {
-    background: white;
-    border: 2px solid #eee;
-    padding: 12px;
-    border-radius: 15px;
-    font-family: inherit;
-    font-size: 0.9rem;
+.custom-time-picker:focus-within {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 15px rgba(231, 76, 60, 0.1);
+}
+
+.time-select {
+    font-size: 1.6rem;
     font-weight: bold;
+    border: none;
+    background: transparent;
     color: var(--primary-color);
     cursor: pointer;
-    transition: 0.3s;
+    outline: none;
+    appearance: none; 
+    text-align: center;
 }
 
-.time-chip:hover { border-color: var(--secondary-color); }
-
-.time-chip.selected {
-    background: var(--secondary-color) !important;
-    color: white !important;
-    border-color: var(--secondary-color) !important;
-    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+.time-separator {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--secondary-color);
+    animation: pulse 1.5s infinite;
 }
 
-/* --- REJILLA DE SERVICIOS --- */
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+/* --- BLOQUE 3: REJILLA DE SERVICIOS --- */
 .clue-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -327,7 +348,7 @@ body {
     box-shadow: 0 10px 20px rgba(231, 76, 60, 0.1);
 }
 
-/* --- INPUTS Y TEXTAREAS --- */
+/* --- BLOQUE 4: INPUTS Y FORMULARIO --- */
 .clue-input-inline, textarea {
     width: 100%;
     padding: 15px;
@@ -336,13 +357,18 @@ body {
     font-family: inherit;
     margin-bottom: 15px;
     outline: none;
+    transition: 0.3s;
 }
 
-textarea { resize: none; min-height: 80px; }
+.clue-input-inline:focus, textarea:focus {
+    border-color: var(--secondary-color);
+}
 
-/* --- CUADRO DE ATENCIÓN ESPECIAL --- */
+textarea { resize: none; min-height: 100px; }
+
+/* --- BLOQUE 5: ATENCIÓN Y BOTONES --- */
 .atencion-especial {
-    margin-top: 30px;
+    margin-top: 35px;
     padding: 20px;
     background-color: #fef9e7;
     border-left: 5px solid var(--accent-color);
@@ -353,7 +379,6 @@ textarea { resize: none; min-height: 80px; }
 .atencion-especial p { font-size: 0.9rem; font-weight: 600; color: var(--primary-color); margin-bottom: 5px; }
 .atencion-especial a { color: var(--secondary-color); font-weight: bold; text-decoration: none; }
 
-/* --- BOTONES DE NAVEGACIÓN --- */
 .btn-clue-next, .btn-guardar-clue {
     width: 100%;
     margin-top: 25px;
@@ -391,6 +416,7 @@ textarea { resize: none; min-height: 80px; }
 }
 
 @media (max-width: 480px) {
-    .clue-grid, .time-grid { grid-template-columns: repeat(2, 1fr); }
+    .clue-grid { grid-template-columns: repeat(2, 1fr); }
     .clue-stepper { padding: 25px; }
+    .time-select { font-size: 1.3rem; }
 }
