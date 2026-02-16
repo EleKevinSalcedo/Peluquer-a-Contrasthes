@@ -154,7 +154,6 @@ const navbar = document.querySelector('.navbar');
 window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
 
-    // margen de tolerancia de 5px
     if (currentScroll > lastScroll + 5) {
         navbar.classList.add('hidden');
     } 
