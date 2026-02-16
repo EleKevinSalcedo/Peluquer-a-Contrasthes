@@ -79,11 +79,15 @@ body {
 /* ===================== HERO ===================== */
 
 .hero {
-    margin-top: 80px;
-    margin-bottom: -20px;
+    /* Eliminamos el margin-top y margin-bottom que daban problemas */
+    margin: 0; 
+    
+    /* Usamos padding-top para que el contenido no quede debajo de la navbar fija */
+    padding-top: calc(80px + 120px); 
+    padding-bottom: 120px;
+    
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     color: white;
-    padding: 120px 20px;
     text-align: center;
     min-height: 60vh;
     display: flex;
@@ -130,6 +134,8 @@ body {
 /* ===================== SERVICIOS ===================== */
 
 .servicios {
+    /* Esto elimina cualquier posible espacio entre bloques */
+    margin-top: -1px; 
     padding: 100px 20px 80px 20px;
     background-color: #f8f9fa;
 }
