@@ -1,200 +1,116 @@
-/* ===================== 1. VARIABLES Y RESET ===================== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* ===================== 1. ESTRUCTURA BASE ===================== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-    --primary-color: #2c3e50;
-    --secondary-color: #e74c3c;
-    --accent-color: #f39c12;
-    --light-bg: #f8f9fa;
-    --text-color: #2c3e50;
-    --border-radius: 12px;
+    --primary: #2c3e50;
+    --secondary: #e74c3c;
+    --accent: #f39c12;
+    --radius: 12px;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     line-height: 1.6;
-    color: var(--text-color);
+    background-color: white;
 }
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 0 20px !important;
 }
 
-/* ===================== 2. NAVEGACIÓN (COMÚN) ===================== */
+/* ===================== 2. NAVBAR ===================== */
 .navbar {
-    background-color: var(--primary-color);
-    color: white;
+    background-color: var(--primary);
     padding: 1rem 0;
     position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    transition: transform 0.4s ease, opacity 0.4s ease;
+    top: 0; width: 100%; z-index: 1000;
 }
-
-.navbar.hidden {
-    transform: translateY(-100%);
-    opacity: 0;
-}
-
 .navbar .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
 }
+.nav-links { display: flex; list-style: none; gap: 2rem; }
+.nav-links a { color: white; text-decoration: none; }
 
-.nav-links {
-    display: flex;
-    list-style: none;
-    gap: 2rem;
-}
-
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-}
-
-/* ===================== 3. ESTILOS PÁGINA PRINCIPAL (INDEX) ===================== */
-
-/* Hero Section */
+/* ===================== 3. PÁGINA PRINCIPAL (ARREGLO DE GRIDS) ===================== */
 .hero {
-    padding-top: 140px;
-    padding-bottom: 120px;
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-    color: white;
-    text-align: center;
+    padding: 160px 20px 100px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white; text-align: center;
 }
 
-.hero h2 { font-size: 3.5rem; margin-bottom: 1rem; }
-
-/* Botones */
-.btn {
-    padding: 12px 30px;
-    border-radius: var(--border-radius);
-    text-decoration: none;
-    display: inline-block;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.btn-primary { background: var(--accent-color); color: white; border: none; }
-.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
-
-/* Grid de Servicios */
-.servicios { padding: 80px 0; background: var(--light-bg); text-align: center; }
-
+/* Forzamos el grid de servicios que se veía mal en tu captura */
 .servicios-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+    gap: 20px !important;
+    margin-top: 40px;
 }
 
 .servicio-card {
     background: white;
-    padding: 2rem;
-    border-radius: var(--border-radius);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    padding: 30px;
+    border-radius: var(--radius);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-align: center;
 }
 
-.servicio-icon { font-size: 2.5rem; margin-bottom: 1rem; }
-
-/* Galería */
-.galeria { padding: 80px 0; text-align: center; }
-
+/* Forzamos el grid de galería */
 .galeria-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+    gap: 15px !important;
 }
 
 .galeria-item img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    border-radius: var(--border-radius);
+    width: 100% !important;
+    height: 250px !important;
+    object-fit: cover !important;
+    border-radius: var(--radius);
 }
 
-/* ===================== 4. ESTILOS PÁGINA RESERVA (TIPO CLUE) ===================== */
-
-/* Contenedor específico para no dañar el index */
+/* ===================== 4. PÁGINA DE RESERVA (ESTILO CLUE) ===================== */
 .reserva.container {
-    padding-top: 120px;
-    max-width: 550px;
-}
-
-.formulario-clue {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
+    padding-top: 140px !important;
+    max-width: 600px !important;
 }
 
 .clue-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columnas de iconos */
-    gap: 15px;
-    margin-bottom: 2rem;
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 15px !important;
+    margin: 20px 0;
 }
 
-.clue-card input { display: none; } /* Esconde el radio button */
+.clue-card input { display: none !important; }
 
 .card-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 10px;
-    border: 2px solid #eee;
-    border-radius: 20px;
-    cursor: pointer;
-    background: white;
-    transition: 0.3s;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 20px; border: 2px solid #eee; border-radius: 20px;
+    cursor: pointer; background: white; transition: 0.3s;
 }
 
 .clue-card input:checked + .card-content {
-    border-color: var(--secondary-color);
+    border-color: var(--secondary);
     background: #fff5f4;
     transform: scale(1.05);
 }
 
 .clue-input-inline {
-    width: 100%;
-    padding: 12px;
-    border-radius: 15px;
-    border: 2px solid #eee;
-    margin-bottom: 1rem;
+    width: 100%; padding: 12px; margin-bottom: 10px;
+    border: 2px solid #eee; border-radius: 10px;
 }
 
 .btn-guardar-clue {
-    width: 100%;
-    background: var(--primary-color);
-    color: white;
-    padding: 15px;
-    border-radius: 30px;
-    border: none;
-    font-size: 1.1rem;
-    cursor: pointer;
-    margin-top: 20px;
+    width: 100%; background: var(--primary); color: white;
+    padding: 15px; border-radius: 30px; border: none; font-weight: bold;
 }
 
-/* ===================== 5. FOOTER Y RESPONSIVE ===================== */
+/* ===================== 5. FOOTER ===================== */
 .footer {
-    background: var(--primary-color);
-    color: white;
-    padding: 3rem 0;
-    text-align: center;
-    margin-top: 50px;
-}
-
-@media (max-width: 768px) {
-    .nav-links { display: none; }
-    .hero h2 { font-size: 2.2rem; }
-    .clue-grid { grid-template-columns: repeat(2, 1fr); }
+    background: var(--primary); color: white;
+    padding: 40px 0; text-align: center; margin-top: 50px;
 }
