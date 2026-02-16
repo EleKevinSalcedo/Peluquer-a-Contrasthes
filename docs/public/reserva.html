@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Reservar Cita — Peluquería Contrasthes</title>
+	<link rel="stylesheet" href="../CSS/index.css">
+</head>
+<body>
+	<nav class="navbar">
+		<div class="container">
+			<div class="navbar-brand"><h1>✂️ Contrasthes</h1></div>
+			<ul class="nav-links">
+				<li><a href="../index.html">Inicio</a></li>
+				<li><a href="../index.html#servicios">Servicios</a></li>
+				<li><a href="../index.html#galeria">Galería</a></li>
+				<li><a href="../index.html#contacto">Contacto</a></li>
+			</ul>
+		</div>
+	</nav>
+
+	<section class="reserva container">
+		<h2>Reservar Cita</h2>
+		<p>Completa el formulario para solicitar tu cita. Te contactaremos para confirmar.</p>
+
+		<form id="reserva-form" class="formulario" method="post" action="#" onsubmit="handleSubmit(event)">
+			<label>Nombre completo
+				<input type="text" name="nombre" placeholder="Tu nombre" required>
+			</label>
+
+			<label>Email
+				<input type="email" name="email" placeholder="tu@email.com" required>
+			</label>
+
+			<label>Teléfono
+				<input type="tel" name="telefono" placeholder="+34 612 345 678">
+			</label>
+
+			<label>Servicio
+				<select name="servicio" required>
+					<option value="">Selecciona un servicio</option>
+					<option value="corte">Corte de Cabello</option>
+					<option value="tinte">Tinte y Coloración</option>
+					<option value="tratamiento">Tratamientos</option>
+					<option value="alisado">Alisados y Permanentes</option>
+					<option value="maquillaje">Maquillaje</option>
+					<option value="paquete">Paquete VIP</option>
+				</select>
+			</label>
+
+			<label>Fecha
+				<input type="date" name="fecha" required>
+			</label>
+
+			<label>Hora
+				<input type="time" name="hora" required>
+			</label>
+
+			<label>Comentarios
+				<textarea name="mensaje" rows="4" placeholder="Información adicional (opcional)"></textarea>
+			</label>
+
+			<button type="submit" class="btn btn-primary">Solicitar Reserva</button>
+		</form>
+
+		<p><a href="../index.html" class="btn">Volver al inicio</a></p>
+	</section>
+
+	<footer class="footer">
+		<div class="container">
+			<p>&copy; 2026 Peluquería Contrasthes. Todos los derechos reservados.</p>
+		</div>
+	</footer>
+
+	<script>
+		function handleSubmit(e){
+			e.preventDefault();
+			const form = document.getElementById('reserva-form');
+			const data = Object.fromEntries(new FormData(form).entries());
+			alert('Reserva solicitada. Revisaremos y te confirmaremos por email o teléfono.\n\n' + JSON.stringify(data, null, 2));
+			form.reset();
+		}
+	</script>
+</body>
+</html>
