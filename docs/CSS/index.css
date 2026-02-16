@@ -38,6 +38,7 @@ body {
     left: 0;
     width: 100%;
     z-index: 1000;
+    border-bottom: none;
 
     transition: transform 0.4s ease, opacity 0.4s ease;
 }
@@ -78,9 +79,10 @@ body {
 /* ===================== HERO ===================== */
 
 .hero {
+    margin-top: 80px; /* altura real de la navbar */
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     color: white;
-    padding: 200px 20px 120px 20px; /* Compensa navbar fija */
+    padding: 120px 20px;
     text-align: center;
     min-height: 60vh;
     display: flex;
