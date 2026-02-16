@@ -6,9 +6,9 @@
 }
 
 :root {
-    --primary-color: #2c3e50;    /* Azul oscuro */
-    --secondary-color: #e74c3c;  /* Rojo Clue */
-    --accent-color: #f39c12;     /* Naranja */
+    --primary-color: #2c3e50;
+    --secondary-color: #e74c3c;
+    --accent-color: #f39c12;
     --bg-clue: #ffffff;
     --border-clue: #eee;
     --border-radius: 12px;
@@ -27,7 +27,7 @@ body {
     padding: 0 20px;
 }
 
-/* ===================== 2. NAVBAR Y NAVEGACIÓN ===================== */
+/* ===================== 2. NAVBAR ===================== */
 .navbar {
     background-color: var(--primary-color);
     color: white;
@@ -60,7 +60,7 @@ body {
 
 .hero {
     margin-top: 80px;
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
     padding: 120px 20px;
     text-align: center;
@@ -80,7 +80,7 @@ body {
     margin-bottom: 2rem;
 }
 
-/* ===================== BOTONES ===================== */
+/* ===================== BOTONES GENERALES ===================== */
 
 .btn {
     padding: 12px 30px;
@@ -100,22 +100,33 @@ body {
     background-color: var(--secondary-color);
 }
 
-/* ===================== SERVICIOS ===================== */
+/* ===================== SECCIONES PRINCIPALES ===================== */
+
+.servicios,
+.contacto {
+    padding: 80px 20px;
+}
 
 .servicios {
-    padding: 80px 20px;
     background-color: #f8f9fa;
 }
 
-.servicios h2 {
-    text-align: center;
-    margin-bottom: 3rem;
+.contacto {
+    background-color: #f8f9fa;
+}
+
+.servicios-grid,
+.galeria-grid {
+    display: grid;
+    gap: 2rem;
 }
 
 .servicios-grid {
-    display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+}
+
+.galeria-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
 .servicio-card {
@@ -126,52 +137,23 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* ===================== GALERÍA ===================== */
-
-.galeria {
-    padding: 80px 20px;
-    background-color: white;
-}
-
-.galeria-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-}
-
-/* ===================== CONTACTO ===================== */
-
-.contacto {
-    padding: 80px 20px;
-    background-color: #f8f9fa;
-}
-
-.contacto-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-}
-
 /* =============================================================
-   3. PÁGINA DE RESERVA (ESTILO APP CLUE) - UNIFICADO Y FINAL
-   ============================================================= */
+   PÁGINA RESERVA
+============================================================= */
 
-/* Fondo general de la subpágina */
 .body-reserva {
-    background-color: #f0f2f5; 
+    background-color: #f0f2f5;
 }
 
-/* Contenedor principal centrado */
 .reserva.container {
     padding-top: 140px;
     padding-bottom: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: calc(100vh - 80px);
 }
 
-/* La tarjeta principal (App Container) */
 .clue-stepper {
     background: white;
     width: 100%;
@@ -182,20 +164,15 @@ body {
     border: 1px solid rgba(0,0,0,0.05);
 }
 
-/* Encabezados de los pasos */
 .step h3 {
     text-align: center;
     margin-bottom: 25px;
-    color: var(--primary-color);
     font-size: 1.2rem;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-/* --- BLOQUE 1: CALENDARIO DINÁMICO --- */
-.clue-calendar-container {
-    margin-bottom: 25px;
-}
+/* ===== SELECTS ===== */
 
 .clue-calendar-header {
     display: flex;
@@ -204,23 +181,20 @@ body {
     margin-bottom: 20px;
 }
 
-/* --- ESTILO UNIFICADO PARA TODOS LOS SELECTORES (MES, AÑO, HORA) --- */
 .clue-calendar-header select,
 .time-select {
     background-color: #f8f9fa;
     border: 2px solid #eee;
     padding: 10px 35px 10px 15px;
     border-radius: 12px;
-    font-family: inherit;
     font-weight: bold;
     color: var(--primary-color);
     cursor: pointer;
     outline: none;
-    transition: 0.3s all ease;
-    text-align: center;
-    appearance: none; 
+    transition: 0.3s;
+    appearance: none;
     -webkit-appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23e74c3c' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'%3E%3C/path%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23e74c3c' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 12px center;
 }
@@ -228,9 +202,11 @@ body {
 .clue-calendar-header select:focus,
 .time-select:focus {
     border-color: var(--secondary-color);
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(231, 76, 60, 0.1);
+    background-color: white;
+    box-shadow: 0 0 10px rgba(231,76,60,0.1);
 }
+
+/* ===== CALENDARIO ===== */
 
 .clue-calendar-grid {
     display: grid;
@@ -241,61 +217,30 @@ body {
     border-radius: 20px;
 }
 
-.day-name {
-    font-size: 0.7rem;
-    font-weight: bold;
-    color: #999;
-    text-align: center;
-}
-
 .day {
     aspect-ratio: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.9rem;
     border-radius: 50%;
     cursor: pointer;
     transition: 0.2s;
 }
 
-.day:hover:not(.empty) { background: #eee; }
+.day:hover:not(.empty) {
+    background: #eee;
+}
 
 .day.selected {
-    background: var(--secondary-color) !important;
-    color: white !important;
+    background: var(--secondary-color);
+    color: white;
     font-weight: bold;
     transform: scale(1.1);
-    box-shadow: 0 5px 10px rgba(231, 76, 60, 0.2);
+    box-shadow: 0 5px 10px rgba(231,76,60,0.2);
 }
 
-/* --- BLOQUE 2: SELECTOR DE HORA --- */
-.clue-time-section {
-    margin-top: 25px;
-    text-align: center;
-}
+/* ===== SERVICIOS ===== */
 
-.time-label {
-    font-size: 0.9rem;
-    color: #888;
-    margin-bottom: 12px;
-}
-
-.custom-time-picker {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    margin: 0 auto;
-}
-
-.time-separator {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--secondary-color);
-}
-
-/* --- BLOQUE 3: REJILLA DE SERVICIOS --- */
 .clue-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -303,7 +248,9 @@ body {
     margin: 20px 0;
 }
 
-.clue-card input { display: none; }
+.clue-card input {
+    display: none;
+}
 
 .card-content {
     display: flex;
@@ -313,8 +260,7 @@ body {
     border: 2px solid #eee;
     border-radius: 20px;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    background: white;
+    transition: 0.3s;
 }
 
 .clue-card input:checked + .card-content {
@@ -323,8 +269,10 @@ body {
     transform: scale(1.05);
 }
 
-/* --- BLOQUE 4: INPUTS --- */
-.clue-input-inline, textarea {
+/* ===== INPUTS ===== */
+
+.clue-input-inline,
+textarea {
     width: 100%;
     padding: 15px;
     border: 2px solid #eee;
@@ -332,57 +280,49 @@ body {
     margin-bottom: 15px;
     outline: none;
     transition: 0.3s;
-    box-sizing: border-box; /* Importante para que no se salgan del cuadro */
 }
 
-/* --- BLOQUE 5: BOTONES DE NAVEGACIÓN (EL ARREGLO) --- */
+.clue-input-inline:focus,
+textarea:focus {
+    border-color: var(--secondary-color);
+}
+
+/* ===== BOTONES PASOS ===== */
+
 .step-buttons {
     display: flex;
     gap: 15px;
     margin-top: 25px;
-    width: 100%;
 }
 
-/* Botón "Atrás" */
 .btn-clue-prev {
     flex: 1;
     padding: 18px;
     border-radius: 50px;
-    font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-
     background: transparent;
     border: 2px solid #d6d9de;
     color: #6b7280;
-
-    transition: all 0.3s ease;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 .btn-clue-prev:hover {
     border-color: var(--primary-color);
     color: var(--primary-color);
-    background: rgba(44, 62, 80, 0.05);
-}
-
-/* Botones Principales (Siguiente / Confirmar) */
-.btn-clue-next, .btn-guardar-clue {
-    flex: 2; 
-    padding: 18px;
-    border-radius: 50px;
-    font-weight: bold;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: 0.3s;
-    border: none;
-    background: var(--primary-color);
-    color: white;
+    background: rgba(44,62,80,0.05);
 }
 
 .btn-clue-next {
-    background: transparent;
+    flex: 2;
+    padding: 18px;
+    border-radius: 50px;
     border: 2px solid var(--primary-color);
+    background: transparent;
     color: var(--primary-color);
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 .btn-clue-next:hover {
@@ -391,11 +331,19 @@ body {
 }
 
 .btn-guardar-clue {
+    flex: 2;
+    padding: 18px;
+    border-radius: 50px;
+    border: none;
     background: var(--primary-color);
     color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-/* --- ATENCIÓN ESPECIAL --- */
+/* ===== ATENCIÓN ===== */
+
 .atencion-especial {
     margin-top: 35px;
     padding: 20px;
@@ -405,21 +353,12 @@ body {
     text-align: center;
 }
 
-/* Animación de entrada */
-.step { animation: slideUp 0.6s ease; }
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
 .atencion-especial a {
     color: var(--secondary-color);
     font-weight: bold;
     text-decoration: none;
-    transition: 0.3s;
 }
 
 .atencion-especial a:hover {
     text-decoration: underline;
-    opacity: 0.8;
 }
