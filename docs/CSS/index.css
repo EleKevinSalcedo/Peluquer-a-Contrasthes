@@ -241,3 +241,11 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+/* LOGO NAVBAR */
+
+.logo {
+    height: 50px;
+    width: auto;
+    display: block;
+}
